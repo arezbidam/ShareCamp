@@ -44,7 +44,7 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <?php if((session()->get('id') == null)) : ?>
+            <?php if(!session()->get('id')) : ?>
             <li class="nav-item">
               <a class="nav-link" href="/login">LogIn</a>
             </li>
