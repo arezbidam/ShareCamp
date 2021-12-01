@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-class Home extends BaseController
+class Profile extends BaseController
 {
     public function __construct()
     {
@@ -14,9 +14,8 @@ class Home extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Beranda',
-            'isi' => $this->UserModel->findAll(),
+            'title' => 'Profile',
         ];
-        return view('home', $data);
+        return view('pages/profile-v', $data);
     }
 }
