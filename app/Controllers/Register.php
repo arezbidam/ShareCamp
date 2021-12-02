@@ -26,6 +26,7 @@ class Register extends BaseController
       ]);
 
       $data_Session = [
+        'id' => $this->UserModel->where('email', $email_reg),
         'email' => $email_reg,
         'password' => $password_reg,
         'nama' => $nama_reg,
