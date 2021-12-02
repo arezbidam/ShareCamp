@@ -12,7 +12,7 @@ class UserLogged implements FilterInterface
     {
         // Do something here
         if(session()->get('id')){
-            session()->setFlashdata('errLogged','Anda sudah Login');
+            session()->setFlashdata('errLogged','Anda sudah Masuk');
             return redirect()->to('TempSession');
         }
     }

@@ -35,7 +35,9 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Login::index', ['filter' => 'UserLogged']);
 $routes->get('/logout', 'Login::logOut');
 $routes->get('/signIn', 'Login::signIn');
-$routes->get('/signUp', 'Login::signUp');
+$routes->get('/signUp', 'Login::signUp' , ['filter' => 'UserLogged']);
+$routes->get('/register', 'Register::index');
+
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/toko/(:num)', 'Toko::toko_saya/$1');
 $routes->get('/toko/create-toko/(:num)', 'Toko::buat_toko_baru_dengan_id_user/$1');

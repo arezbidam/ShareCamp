@@ -48,7 +48,7 @@ class Login extends BaseController
                     'nama' => $dataUser['nama'],
                 ];
                 session()->set($data_Session);
-                return redirect()->to('Profile');
+                return redirect()->to('Home');
             }
 
             if ($err) {
