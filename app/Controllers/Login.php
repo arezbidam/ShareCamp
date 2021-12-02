@@ -11,7 +11,7 @@ class Login extends BaseController
         $this->UserModel = new UserModel();
     }
 
-    
+
     public function index()
     {
         $data = [
@@ -22,35 +22,36 @@ class Login extends BaseController
 
     public function signIn()
     {
-        $login = $this->request->getPost('login');  
-        $email = $this->request->getVar('email'); 
+        $login = $this->request->getPost('login');
+        $email = $this->request->getVar('email');
         $UserModel = $this->UserModel;
-        if($login = 1) {
+        if ($login = 1) {
             $email = $this->request->getVar('email');
             $password = $this->request->getVar('password');
-            
-            if($email == '' or $password == ''){
+
+            if ($email == '' or $password == '') {
                 $err = 'Silahkan isi form terlebih dahulu.';
             }
-            
-            if(empty($err)){
+
+            if (empty($err)) {
                 $dataUser = $UserModel->where('email', $email)->first();
-                if($dataUser['password'] != $password){
+                if ($dataUser['password'] != $password) {
                     $err = 'Password Salah';
                 }
             }
 
-            if(empty($err)){
+            if (empty($err)) {
                 $data_Session = [
                     'id' => $dataUser['id_user'],
                     'email' => $dataUser['email'],
                     'password' => $dataUser['password'],
+                    'nama' => $dataUser['nama'],
                 ];
                 session()->set($data_Session);
                 return redirect()->to('Profile');
             }
-            
-            if($err){
+
+            if ($err) {
                 session()->setFlashdata('error', $err);
                 return redirect()->to('login');
             }
