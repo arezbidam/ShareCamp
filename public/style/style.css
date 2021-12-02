@@ -44,7 +44,7 @@
 
 #search-bar:focus {
   outline:none;
-  text-indent: 7px;
+  text-indent: 10px;
   font-size: large;
   /* font-weight: bold; */
   /* border-color:#9ecaed; */
