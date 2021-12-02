@@ -1,3 +1,15 @@
+
+@media screen and (max-width: 700px){
+  #home-banner h1 {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: -10px;
+  }
+  #home-banner h2{
+    display: none;
+  }
+}
+
 /* small */
 @media screen and (min-width: 576px) {
   /* home */
@@ -24,9 +36,8 @@
   margin-top: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
-  width: 750px;
+  width: 700px;
 }
-
 
 #search-bar {
   width: 750px;
@@ -55,6 +66,11 @@
 /* xl */
 @media screen and (min-width: 1200px) {
   /* home */
+#home-banner{
+  width: 1000px;
+  margin-top: 30px;
+}
+
 #search-bar__container {
   margin-top: 20px;
   margin-bottom: 20px;

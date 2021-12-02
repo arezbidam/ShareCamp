@@ -2,6 +2,12 @@
 <?= $this->section('content'); ?>
 
 <div class="container">
+  <div class="row" id="home-banner">
+    <div class="col">
+      <h1 class="text-center">Temukan Barang <span style="color:#48af48">terbaik</span> Pilihanmu</h1>
+      <h2 class="text-center">Cari barang keperluanmu menggunakan fitur filter, kamu juga dapat mencari teman satu destinasi untuk melakukan pemesanan bersama!</h2>
+    </div>
+  </div>
   <div class="row">
     <div class="container d-flex justify-content-center">
       <div class="row">
