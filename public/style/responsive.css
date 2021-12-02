@@ -1,0 +1,92 @@
+/* small */
+@media screen and (min-width: 576px) {
+  /* home */
+
+#search-bar__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 500px;
+}
+
+#search-bar {
+  width: 500px;
+}
+
+/* endHome */
+}
+
+/* medium */
+@media screen and (min-width: 768px) {
+  /* home */
+
+#search-bar__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 750px;
+}
+
+
+#search-bar {
+  width: 750px;
+}
+
+/* endHome */
+}
+
+/* large */
+@media screen and (min-width: 992px) {
+  /* home */
+#search-bar__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 940px;
+}
+
+#search-bar {
+  width: 940px;
+}
+
+/* endHome */
+}
+
+/* xl */
+@media screen and (min-width: 1200px) {
+  /* home */
+#search-bar__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 1000px;
+}
+
+#search-bar {
+  width: 1000px;
+
+}
+
+/* endHome */
+}
+
+/* xxl */
+@media screen and (min-width: 1400px) {
+  /* home */
+
+#search-bar__container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 1200px;
+}
+
+#search-bar {
+  width: 1970px;
+}
+
+/* endHome */
+}
+
+
+

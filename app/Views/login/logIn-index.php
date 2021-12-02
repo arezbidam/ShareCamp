@@ -10,11 +10,11 @@
   <title><?= $title ?></title>
 </head>
 <body id="login_view">
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">ShareCamp</a>
-      </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">ShareCamp</a>
+    </div>
+  </nav>
 <div class="container">
   <div class="row">
     <div class=" card col-11 col-lg-6 m-auto mt-1 rounded-5 mt-5">

@@ -32,6 +32,6 @@ class Register extends BaseController
         'nama' => $nama_reg,
       ];
       session()->set($data_Session);
-      return redirect()->to('Profile');
+      return redirect()->to('Home');
     }
 }

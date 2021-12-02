@@ -12,7 +12,7 @@
 <body id="login_view">
   <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">ShareCamp</a>
+      <a class="navbar-brand fw-bold" href="#">ShareCamp</a>
     </div>
   </nav>
 
