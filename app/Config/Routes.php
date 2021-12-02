@@ -36,6 +36,8 @@ $routes->get('/login', 'Login::index', ['filter' => 'UserLogged']);
 $routes->get('/logout', 'Login::logOut');
 $routes->get('/signIn', 'Login::signIn');
 $routes->get('/signUp', 'Login::signUp');
+$routes->get('/register', 'Register::index');
+
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
 
 /*
