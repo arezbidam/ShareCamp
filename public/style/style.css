@@ -1,9 +1,30 @@
+body {
+  box-sizing: border-box;
+}
+
 #login_view{
   height: 100vh;
 }
 
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-    input:focus {
+    border-color: #77DD77;
+    box-shadow: 0 0 6px #77DD77;
+    outline: #77DD77 auto 5px;
+}
+
+
 .card {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+
+.card-header {
+  background-image: url('/assets/img/login-banner.jpg');
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
 /* home */
@@ -68,3 +89,36 @@
 }
 
 /* endHome */
+
+/* profile */
+
+.profile-menu__header {
+  text-align: center;
+}
+.profile-menu__header > img {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.profile-menu__tabs{
+  margin-top: 20px;
+}
+
+.profile-menu__tabs > ul > li {
+  list-style-type: none;
+  background-color: red;
+  margin-top: 10px;
+}
+.profile-menu__tabs > ul > li > a {
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  height: 44px;
+  /* background-color: blue; */
+  font-weight: bold;
+}
+
+/* End-profile */
