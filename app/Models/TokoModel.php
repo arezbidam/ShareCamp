@@ -8,9 +8,9 @@ class TokoModel extends Model
 {
     protected $table = 'tb_toko';
     protected $useTimestamps = true;
-    protected $allowedFields = ['nama_toko', 'alamat_toko', 'jam_operasional', 'id_user'];
+    protected $allowedFields = ['id_toko', 'nama_toko', 'alamat_toko', 'no_telp_toko', 'deskripsi_toko', 'status_toko', 'id_user'];
 
-    public function get_toko($id_user = false)
+    public function get_toko($id_user)
     {
         return $this->where(['id_user' => $id_user])->first();
     }

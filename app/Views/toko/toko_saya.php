@@ -5,112 +5,140 @@
     <div class="container mt-5">
         <?php if ($toko) { ?>
             <div class="row">
+                <?php if (session()->getFlashdata('pesan')) : ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= session()->getFlashdata('pesan'); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="col-sm-3 mb-4">
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item">Product Categories</li>
-                    </ul>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-action"><?= $toko['nama_toko']; ?></li>
-                        <?php foreach ($toko as $toko_saya) { ?>
-                            <a href="#" class="list-group-item list-group-item-action"><?= $toko_saya['nama_toko']; ?></a>
-                        <?php } ?>
-                    </ul>
-                </div>
-                <div class="col-sm-6 mb-4">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="<?= base_url('assets/img/img2.jpg'); ?>" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="<?= base_url('assets/img/img3.jpg'); ?>" class="d-block w-100" alt="...">
+                    <div class="card">
+                        <div class="card-body">
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item text-dark fw-bold bg-light"><i class="fas fa-home"></i> Toko <span style="color:#48af48">Saya</span></li>
+                            </ul>
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="v-pills-home-tab" id="profile-toko-tab" data-bs-toggle="tab" data-bs-target="#profile-toko" type="button" role="tab" aria-controls="profile-toko" aria-selected="true">Profile</button>
+                                <button class="nav-link" id="v-pills-profile-tab" id="produk-saya-tab" data-bs-toggle="tab" data-bs-target="#produk-saya" type="button" role="tab" aria-controls="produk-saya" aria-selected="false">List Barang</button>
+                                <button class="nav-link" id="v-pills-messages-tab" id="pesanan-tab" data-bs-toggle="tab" data-bs-target="#pesanan" type="button" role="tab" aria-controls="pesanan" aria-selected="false">List Pesanan</button>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
                 </div>
-                <div class="col-sm-3 mb-4">
-                    <div class="d-flex flex-column justify-content-between">
-                        <img src="<?= base_url('assets/img/img1.jpg'); ?>" alt="" class="d-block w-100 mb-3">
-                        <img src="<?= base_url('assets/img/img1.jpg'); ?>" alt="" class="d-block w-100 mb-4">
+                <div class="col-sm-9 mb-4">
+                    <div class="tab-content mb-5" id="myTabContent">
+                        <div class="tab-pane fade show active" id="profile-toko" role="tabpanel" aria-labelledby="profile-toko-tab">
+                            <div class="card">
+                                <div class="card-header text-white" style="font-weight: 500;">
+                                    Toko Saya
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="card-title">
+                                            <?= $toko['nama_toko']; ?>
+                                        </h5>
+                                        <form action="<?= base_url('toko/edit'); ?>" method="post">
+                                            <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">
+                                            <button type="submit" name="edit_toko_submit" class="btn btn-sm btn-primary">Edit Toko</button>
+                                        </form>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Deskripsi Toko :</h5>
+                                                <p class="card-text"><?= $toko['deskripsi_toko']; ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">No. Telp :</h5>
+                                                <p class="card-text"><?= $toko['no_telp_toko']; ?></p>
+                                                <h5 class="card-title">Alamat :</h5>
+                                                <p class="card-text"><?= $toko['alamat_toko']; ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    ShareCamp
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show" id="produk-saya" role="tabpanel" aria-labelledby="produk-saya-tab">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between">
+                                                <h5>Tabel Barang</h5>
+                                                <a href="<?= base_url('toko/barang/create'); ?>" class="btn btn-primary btn-icon btn-sm"><i class="fas fa-plus"></i> Tambah Barang Baru</a>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-striped text-center" id="simpleDataTable" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Foto Barang</th>
+                                                            <th>Nama Barang</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php foreach ($barang as $brg) { ?>
+                                                            <tr>
+                                                                <td class="align-middle"><img src="<?= base_url('assets/img_barang/' . $brg['foto_barang_path']); ?>" alt="" width="50" height="50"></td>
+                                                                <td><?= $brg['nama_barang']; ?></td>
+                                                                <td class="align-middle">
+                                                                    <form method="post">
+                                                                        <input type="hidden" name="id_barang" value="<?= $brg['id_barang']; ?>">
+                                                                        <button type="submit" name="detail_barang" formaction="<?= base_url('toko/barang/detail'); ?>" class="btn btn-info btn-sm btn-icon"><i class="fas fa-eye"></i></button>
+                                                                        <button type="submit" name="edit_barang" formaction="#" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i></button>
+                                                                        <button type="submit" name="hapus_barang" formaction="#" class="btn btn-danger btn-sm btn-icon"><i class="fas fa-trash"></i></button>
+                                                                    </form>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pesanan" role="tabpanel" aria-labelledby="pesanan-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card mx-auto mb-4" style="width: 18rem;">
+                                        <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Sale title</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true">Featured</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Promo</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Recent</button>
-                </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mx-auto mt-4 mb-4" style="width: 18rem;">
-                                <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Featured title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mx-auto mt-4 mb-4" style="width: 18rem;">
-                                <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sale title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card mx-auto mt-4 mb-4" style="width: 18rem;">
-                                <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Recent title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
         <?php } else { ?>
-            <div class="container mt-5">
-                <div class="card text-center">
-                    <div class="card-header">
+            <div class="container mt-5" style="max-width: 800px;">
+                <div class="card">
+                    <div class="card-header text-white" style="font-weight: 500;">
                         Toko Saya
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">Anda belum memiliki toko.</h5>
                         <p class="card-text">Apakah anda tertarik untuk membuat toko ?</p>
-                        <a href="<?= base_url(); ?>/toko/create-toko/<?= session()->get('id'); ?>" class="btn btn-primary">Buat Toko Baru</a>
+                        <form action="<?= base_url('toko/create'); ?>" method="post">
+                            <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">
+                            <button type="submit" name="create_toko_submit" class="btn btn-primary">Buat Toko Baru</button>
+                        </form>
                     </div>
                     <div class="card-footer text-muted">
                         ShareCamp

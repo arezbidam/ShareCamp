@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2021 at 04:55 AM
+-- Generation Time: Dec 06, 2021 at 12:50 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -30,12 +30,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_barang` (
   `id_barang` int(50) NOT NULL,
   `nama_barang` varchar(100) NOT NULL,
+  `foto_barang_path` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
   `stok` int(50) NOT NULL,
   `harga` decimal(19,2) NOT NULL,
-  `status` int(11) NOT NULL,
-  `id_toko` int(50) NOT NULL
+  `status` varchar(50) NOT NULL,
+  `id_toko` int(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_barang`
+--
+
+INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `foto_barang_path`, `deskripsi`, `stok`, `harga`, `status`, `id_toko`, `created_at`, `updated_at`) VALUES
+(1, 'Tenda Berkemah dengan Lubang Ventilasi, Tahan Angin, Tahan Hujan, Tabir Surya, Perlindungan Ultravio', '1_1638788701_d6db3e6f4ea267f4fcea.png', 'Rincian cepat\r\nTempat asal:\r\nChina\r\nNama merek:\r\nmoqiyi\r\nNomor model:\r\nMQ-1111\r\nKain:\r\nOxford cloth\r\nDaerah:\r\n3*3M\r\nTenda Gaya:\r\nLurus Bracing Tipe\r\nMusim:\r\nEmpat Musim Tenda\r\nStruktur:\r\nSatu Kamar Tidur\r\nTipe Bangunan:\r\nKonstruksi Berdasarkan Kebutuhan\r\nIndeks Tahan Air Bagian Bawah:\r\n2000-3000 mm\r\nIndeks Tahan Air Tenda Luar:\r\n2000-3000 mm\r\ncolor:\r\nBlue with white\r\nSize:\r\n3*3M\r\nUse:\r\nFamily tents for PICNIC CAMPING\r\nColor:\r\nBlue with white', 10, '40000.00', 'Tersedia', 1, '2021-12-05 22:05:01', '2021-12-05 22:05:01');
 
 -- --------------------------------------------------------
 
@@ -78,11 +88,20 @@ CREATE TABLE `tb_toko` (
   `id_toko` int(50) NOT NULL,
   `nama_toko` varchar(100) NOT NULL,
   `alamat_toko` text NOT NULL,
-  `jam_operasional` text NOT NULL,
+  `no_telp_toko` varchar(50) NOT NULL,
+  `deskripsi_toko` text NOT NULL,
+  `status_toko` varchar(100) NOT NULL,
   `id_user` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_toko`
+--
+
+INSERT INTO `tb_toko` (`id_toko`, `nama_toko`, `alamat_toko`, `no_telp_toko`, `deskripsi_toko`, `status_toko`, `id_user`, `created_at`, `updated_at`) VALUES
+(1, 'rental cirebon', 'jln. lobunta raya', '085324009008', '<p>toko rental alat-alat outdoor</p>', 'Menunggu Konfirmasi', '1', '2021-12-05 14:15:14', '2021-12-05 14:15:14');
 
 -- --------------------------------------------------------
 
@@ -147,7 +166,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_categories`
@@ -165,7 +184,7 @@ ALTER TABLE `tb_login`
 -- AUTO_INCREMENT for table `tb_toko`
 --
 ALTER TABLE `tb_toko`
-  MODIFY `id_toko` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_toko` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tb_user`

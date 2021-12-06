@@ -2,24 +2,38 @@ body {
   box-sizing: border-box;
 }
 
-#login_view{
+#login_view {
   height: 100vh;
 }
 
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-    input:focus {
-    border-color: #77DD77;
-    box-shadow: 0 0 6px #77DD77;
-    outline: #77DD77 auto 5px;
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable- input:focus {
+  border-color: #77dd77;
+  box-shadow: 0 0 6px #77dd77;
+  outline: #77dd77 auto 5px;
 }
-
 
 .card {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-
 .card-header {
-  background-image: url('/assets/img/login-banner.jpg');
+  background-image: url("/assets/img/login-banner.jpg");
   height: 150px;
   background-position: center;
   background-repeat: no-repeat;
@@ -29,17 +43,17 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /* home */
 
-#home-banner{
+#home-banner {
   margin-top: 30px;
-  margin:auto;
+  margin: auto;
 }
 
-#home-banner h1{
+#home-banner h1 {
   font-size: 2em;
   font-weight: bold;
 }
 
-#home-banner h2{
+#home-banner h2 {
   margin-top: 20px;
   font-size: 1.2em;
   font-weight: normal;
@@ -72,15 +86,15 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   height: 44px;
   padding: 8px;
   border-radius: 10px;
-  background-color: #77DD77;
+  background-color: #77dd77;
   margin-left: 10px;
-  border-top-left-radius: 0px ;
+  border-top-left-radius: 0px;
   font-weight: bold;
   color: rgb(255, 255, 255);
 }
 
 #search-bar:focus {
-  outline:none;
+  outline: none;
   /* text-indent: 10px; */
   /* font-size: large; */
   /* font-weight: bold; */
@@ -92,7 +106,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 /* profile */
 #profile-banner {
-  background-image: url('/assets/img/login-banner.jpg');
+  background-image: url("/assets/img/login-banner.jpg");
   height: 300px;
   background-position: center;
   background-repeat: no-repeat;
@@ -118,10 +132,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   padding: 10px;
   background-color: green;
   border-radius: 50%;
-
 }
 
-.profile-menu__tabs{
+.profile-menu__tabs {
   margin-top: 20px;
 }
 
@@ -130,7 +143,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   background-color: red;
   margin-top: 10px;
 }
-.profile-menu__tabs > button  >  ul > li > a {
+.profile-menu__tabs > button > ul > li > a {
   display: inline-block;
   text-decoration: none;
   width: 100%;
