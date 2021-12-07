@@ -7,11 +7,12 @@ use App\Models\UserModel;
 use App\Models\CategoriesModel;
 use App\Models\TokoModel;
 
+
 class Toko extends BaseController
 {
     public function __construct()
     {
-        $this->UserModel = new UserModel();;
+        $this->UserModel = new UserModel();
         $this->CategoriesModel = new CategoriesModel();;
         $this->TokoModel = new TokoModel();;
         $this->BarangModel = new BarangModel();;
@@ -19,7 +20,8 @@ class Toko extends BaseController
 
     public function index()
     {
-        $toko = $this->TokoModel->get_toko(session()->get('id'));
+
+        $toko = $this->TokoModel->get_toko();
         $barang = $this->BarangModel->get_barang($toko['id_toko']);
         $data = [
             'title' => 'Toko Saya',
@@ -29,6 +31,7 @@ class Toko extends BaseController
         ];
         return view('toko/toko_saya', $data);
     }
+
     public function create()
     {
         $id_user = $this->request->getVar('id_user');

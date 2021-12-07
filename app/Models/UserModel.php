@@ -11,7 +11,7 @@ class UserModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType     = 'array';
     protected $allowedFields = ['email', 'password', 'nama', 'no_ktp', 'alamat', 'kota', 'no_tlp', 'no_rek', 'id_bank', 'atas_nama_bank' ]; 
-    // protected $useTimestamps = false;
+    // protected $useTimestamps = true;
     // protected $createdField  = 'created_at';
     // protected $updatedField  = 'updated_at';
     // protected $deletedField  = 'deleted_at';
