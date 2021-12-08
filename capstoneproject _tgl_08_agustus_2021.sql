@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 12:50 PM
+-- Generation Time: Dec 08, 2021 at 12:03 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -29,8 +29,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_barang` (
   `id_barang` int(50) NOT NULL,
-  `nama_barang` varchar(100) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
   `foto_barang_path` varchar(255) NOT NULL,
+  `kategori_barang` varchar(100) NOT NULL,
   `deskripsi` text NOT NULL,
   `stok` int(50) NOT NULL,
   `harga` decimal(19,2) NOT NULL,
@@ -44,8 +45,8 @@ CREATE TABLE `tb_barang` (
 -- Dumping data for table `tb_barang`
 --
 
-INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `foto_barang_path`, `deskripsi`, `stok`, `harga`, `status`, `id_toko`, `created_at`, `updated_at`) VALUES
-(1, 'Tenda Berkemah dengan Lubang Ventilasi, Tahan Angin, Tahan Hujan, Tabir Surya, Perlindungan Ultravio', '1_1638788701_d6db3e6f4ea267f4fcea.png', 'Rincian cepat\r\nTempat asal:\r\nChina\r\nNama merek:\r\nmoqiyi\r\nNomor model:\r\nMQ-1111\r\nKain:\r\nOxford cloth\r\nDaerah:\r\n3*3M\r\nTenda Gaya:\r\nLurus Bracing Tipe\r\nMusim:\r\nEmpat Musim Tenda\r\nStruktur:\r\nSatu Kamar Tidur\r\nTipe Bangunan:\r\nKonstruksi Berdasarkan Kebutuhan\r\nIndeks Tahan Air Bagian Bawah:\r\n2000-3000 mm\r\nIndeks Tahan Air Tenda Luar:\r\n2000-3000 mm\r\ncolor:\r\nBlue with white\r\nSize:\r\n3*3M\r\nUse:\r\nFamily tents for PICNIC CAMPING\r\nColor:\r\nBlue with white', 10, '40000.00', 'Tersedia', 1, '2021-12-05 22:05:01', '2021-12-05 22:05:01');
+INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `foto_barang_path`, `kategori_barang`, `deskripsi`, `stok`, `harga`, `status`, `id_toko`, `created_at`, `updated_at`) VALUES
+(4, 'Tenda Berkemah dengan Lubang Ventilasi, Tahan Angin, Tahan Hujan, Tabir Surya, Perlindungan Ultraviolet, Tenda Gazebo Instan', '2_1638893055_c03bf9cd92757eeeb598.png', '1', 'adasdasdas', 10, '40000.00', 'Tersedia', 2, '2021-12-07 03:04:15', '2021-12-07 03:10:01');
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,7 @@ CREATE TABLE `tb_toko` (
 --
 
 INSERT INTO `tb_toko` (`id_toko`, `nama_toko`, `alamat_toko`, `no_telp_toko`, `deskripsi_toko`, `status_toko`, `id_user`, `created_at`, `updated_at`) VALUES
-(1, 'rental cirebon', 'jln. lobunta raya', '085324009008', '<p>toko rental alat-alat outdoor</p>', 'Menunggu Konfirmasi', '1', '2021-12-05 14:15:14', '2021-12-05 14:15:14');
+(2, 'rental cirebon', 'jln. lobunta raya', '085324009008', '<p>toko rental alat2 outdoor</p>', 'Menunggu Konfirmasi', '1', '2021-12-05 23:46:21', '2021-12-05 23:46:21');
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_barang` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_categories`
@@ -184,7 +185,7 @@ ALTER TABLE `tb_login`
 -- AUTO_INCREMENT for table `tb_toko`
 --
 ALTER TABLE `tb_toko`
-  MODIFY `id_toko` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_toko` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_user`

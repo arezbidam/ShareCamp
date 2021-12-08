@@ -39,13 +39,15 @@ $routes->get('/signUp', 'Login::signUp', ['filter' => 'UserLogged']);
 $routes->get('/register', 'Register::index');
 
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
-$routes->get('/toko', 'Toko::index');
-$routes->get('/toko/create', 'Toko::create');
-$routes->post('/toko/save', 'Toko::save');
-$routes->get('/toko/barang/create', 'Toko::create_barang');
-$routes->post('/toko/barang/save', 'Toko::save_barang');
-$routes->post('/toko/barang/detail', 'Toko::detail_barang');
-$routes->get('/toko/barang/edit', 'Toko::edit_barang');
+$routes->get('/toko', 'Toko::index', ['filter' => 'auth']);
+$routes->get('/toko/create', 'Toko::create', ['filter' => 'auth']);
+$routes->post('/toko/save', 'Toko::save', ['filter' => 'auth']);
+$routes->get('/toko/barang/create', 'Toko::create_barang', ['filter' => 'auth']);
+$routes->post('/toko/barang/save', 'Toko::save_barang', ['filter' => 'auth']);
+$routes->post('/toko/barang/detail', 'Toko::detail_barang', ['filter' => 'auth']);
+$routes->post('/toko/barang/edit', 'Toko::edit_barang', ['filter' => 'auth']);
+$routes->post('/toko/barang/update', 'Toko::update_barang', ['filter' => 'auth']);
+$routes->post('/toko/barang/hapus', 'Toko::delete_barang', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

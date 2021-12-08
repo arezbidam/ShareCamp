@@ -7,7 +7,10 @@
             <div class="card-body" style="font-weight: 500;">
                 <div class="d-flex justify-content-between">
                     <a href="<?= base_url('toko'); ?>" class="btn btn-primary btn-sm btn-icon"><i class="fas fa-arrow-left"></i> Kembali</a>
-                    <a href="#" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i> Edit Barang</a>
+                    <form method="post">
+                        <input type="hidden" name="id_barang" value="<?= $barang['id_barang']; ?>">
+                        <button type="submit" name="edit_barang" formaction="<?= base_url('toko/barang/edit'); ?>" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"> Edit Barang</i></button>
+                    </form>
                 </div>
                 <h5 class="card-title text-center navbar-brand fw-bold"><i class="fas fa-campground"></i> Detail<span style="color:#48af48"> Barang</span></h5>
             </div>

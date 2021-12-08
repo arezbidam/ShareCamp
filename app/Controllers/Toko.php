@@ -16,17 +16,24 @@ class Toko extends BaseController
         $this->TokoModel = new TokoModel();;
         $this->BarangModel = new BarangModel();;
     }
-
     public function index()
     {
         $toko = $this->TokoModel->get_toko(session()->get('id'));
         $barang = $this->BarangModel->get_barang($toko['id_toko']);
-        $data = [
-            'title' => 'Toko Saya',
-            'categories' => $this->CategoriesModel->findAll(),
-            'toko' => $toko,
-            'barang' => $barang
-        ];
+        if ($barang) {
+            $data = [
+                'title' => 'Toko Saya',
+                'categories' => $this->CategoriesModel->findAll(),
+                'toko' => $toko,
+                'barang' => $barang
+            ];
+        } else {
+            $data = [
+                'title' => 'Toko Saya',
+                'toko' => $toko,
+                'categories' => $this->CategoriesModel->findAll(),
+            ];
+        }
         return view('toko/toko_saya', $data);
     }
     public function create()
@@ -42,7 +49,7 @@ class Toko extends BaseController
             $data = [
                 'title' => 'Toko Saya',
                 'toko' => $toko_saya,
-                'validation' => $validation
+                'validation' => $validation,
             ];
             return view('toko/create', $data);
         }
@@ -110,7 +117,8 @@ class Toko extends BaseController
         $data = [
             'title' => 'Tambah - Barang',
             'validation' => $validation,
-            'id_toko' => $toko_saya['id_toko']
+            'id_toko' => $toko_saya['id_toko'],
+            'categories' => $this->CategoriesModel->findAll(),
         ];
         return view('toko/barang/create', $data);
     }
@@ -171,6 +179,7 @@ class Toko extends BaseController
             $addNewBarang = $this->BarangModel->insert([
                 'nama_barang' => $this->request->getVar('nama_barang'),
                 'foto_barang_path' => $namaFotoBarang,
+                'kategori_barang' => $this->request->getVar('kategori_barang'),
                 'deskripsi' => $this->request->getVar('deskripsi'),
                 'stok' => $this->request->getVar('stok'),
                 'harga' => $this->request->getVar('harga'),
@@ -191,10 +200,122 @@ class Toko extends BaseController
         $barang = $this->BarangModel->get_barang_by_id_barang($id_barang);
         $validation =  \Config\Services::validation();
         $data = [
-            'title' => 'Tambah - Barang',
+            'title' => 'Detail - Barang',
             'validation' => $validation,
             'barang' => $barang,
         ];
         return view('toko/barang/detail', $data);
+    }
+    public function edit_barang()
+    {
+        $id_barang = $this->request->getVar('id_barang');;
+        $barang = $this->BarangModel->get_barang_by_id_barang($id_barang);
+        $validation =  \Config\Services::validation();
+        $data = [
+            'title' => 'Edit - Barang',
+            'validation' => $validation,
+            'barang' => $barang,
+            'categories' => $this->CategoriesModel->findAll(),
+        ];
+        return view('toko/barang/edit', $data);
+    }
+    public function update_barang()
+    {
+        if (!$this->validate([
+            'nama_barang' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Barang harus diisi',
+                ]
+            ],
+            'foto_barang_path' => [
+                'rules' => 'max_size[foto_barang_path,1024]|is_image[foto_barang_path]|mime_in[foto_barang_path,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar',
+                    'is_image' => 'Yang anda pilih bukan gambar',
+                    'mime_in' => 'Yang anda pilih bukan gambar'
+                ]
+            ],
+            'stok' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Stok Barang tidak boleh kosong',
+                    'numeric' => 'Stok Barang harus angka'
+                ]
+            ],
+            'harga' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Harga Barang tidak boleh kosong',
+                    'numeric' => 'Harga Barang harus angka'
+                ]
+            ],
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi Barang tidak boleh kosong',
+                ]
+            ],
+        ])) {
+            return redirect()->to('/toko/barang/create')->withInput();
+        } else {
+            $id_barang = $this->request->getVar('id_barang');
+            //ambil gambar
+            $fileFotoBarang = $this->request->getFile('foto_barang_path');
+            //apakah tidak ada gambar yang diupload
+            if ($fileFotoBarang->getError() == 4) {
+                $updateBarang = $this->BarangModel->save([
+                    'id_barang' => $this->request->getVar('id_barang'),
+                    'nama_barang' => $this->request->getVar('nama_barang'),
+                    'kategori_barang' => $this->request->getVar('kategori_barang'),
+                    'deskripsi' => $this->request->getVar('deskripsi'),
+                    'stok' => $this->request->getVar('stok'),
+                    'harga' => $this->request->getVar('harga'),
+                    'id_toko' => $this->request->getVar('id_toko'),
+                    'status' => "Tersedia",
+                ]);
+            } else {
+                $id_toko = $this->request->getVar('id_toko');
+                // generate nama foto barang random
+                $namaFotoBarang = $id_toko . "_" . $fileFotoBarang->getRandomName();
+                //pindahkan file ke folder img
+                $fileFotoBarang->move('assets/img_barang', $namaFotoBarang);
+                $updateBarang = $this->BarangModel->update_barang([
+                    'id_barang' => $this->request->getVar('id_barang'),
+                    'nama_barang' => $this->request->getVar('nama_barang'),
+                    'foto_barang_path' => $namaFotoBarang,
+                    'kategori_barang' => $this->request->getVar('kategori_barang'),
+                    'deskripsi' => $this->request->getVar('deskripsi'),
+                    'stok' => $this->request->getVar('stok'),
+                    'harga' => $this->request->getVar('harga'),
+                    'id_toko' => $this->request->getVar('id_toko'),
+                    'status' => "Tersedia",
+                ]);
+            }
+
+            if ($updateBarang) {
+                session()->setFlashdata('pesan', 'Data Berhasil Di Simpan');
+            } else {
+                session()->setFlashdata('pesan', 'Data Gagal Di Tambahkan');
+            }
+            return redirect()->to('/toko');
+        }
+    }
+    public function delete_barang()
+    {
+        $id = $this->request->getVar('id_barang');
+        //cari gambar
+        $barang = $this->BarangModel->find($id);
+
+
+        if ($barang) {
+            $path = 'assets/img_barang/' . $barang['foto_barang_path'];
+            //hapus gambar
+            unlink($path);
+        }
+
+        $this->BarangModel->delete($id);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Hapus');
+        return redirect()->to('/toko');
     }
 }

@@ -122,6 +122,9 @@
             </div>
         </div>
     </div>
+    <?php if (session()->getFlashdata('pesan')) : ?>
+        <?= session()->getFlashdata('pesan'); ?>
+    <?php endif; ?>
 </body>
 
 <?= $this->endSection(); ?>

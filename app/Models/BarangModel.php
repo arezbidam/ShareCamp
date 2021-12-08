@@ -7,8 +7,9 @@ use CodeIgniter\Model;
 class BarangModel extends Model
 {
     protected $table = 'tb_barang';
+    protected $primaryKey = 'id_barang';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id_barang', 'nama_barang', 'foto_barang_path', 'deskripsi', 'stok', 'harga', 'status', 'id_toko'];
+    protected $allowedFields = ['id_barang', 'nama_barang', 'foto_barang_path', 'kategori_barang', 'deskripsi', 'stok', 'harga', 'status', 'id_toko'];
 
     public function get_barang($id_toko)
     {

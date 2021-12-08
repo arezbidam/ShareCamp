@@ -24,6 +24,14 @@
   <!-- Data Table -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
 
+  <!-- Select2 -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- sweet alert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
   <title><?= $title ?></title>
 </head>
 
@@ -109,6 +117,18 @@
           errorLine: '<p class="dropify-error">{{ error }}</p>',
           errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
         }
+      });
+    });
+
+    function hapusBarang(idBarang) {
+      $('#id-barang-hapus').attr('value', idBarang);
+      $('#modalHapusBarang').modal();
+    }
+
+    $(document).ready(function() {
+      $('.simple-select2').select2({
+        placeholder: "-- Select an option --",
+        allowClear: true,
       });
     });
   </script>

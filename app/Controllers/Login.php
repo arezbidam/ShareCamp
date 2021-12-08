@@ -46,6 +46,7 @@ class Login extends BaseController
                     'email' => $dataUser['email'],
                     'password' => $dataUser['password'],
                     'nama' => $dataUser['nama'],
+                    'masuk' => TRUE
                 ];
                 session()->set($data_Session);
                 return redirect()->to('Home');

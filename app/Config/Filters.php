@@ -8,6 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use App\Filters\UserReq;
 use App\Filters\UserLogged;
+use App\Filters\Auth;
 
 class Filters extends BaseConfig
 {
@@ -23,6 +24,7 @@ class Filters extends BaseConfig
         'honeypot' => Honeypot::class,
         'UserReq'  => UserReq::class,
         'UserLogged' => UserLogged::class,
+        'auth'     => Auth::class,
     ];
 
     /**

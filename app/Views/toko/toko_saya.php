@@ -3,7 +3,7 @@
 
 <body>
     <div class="container mt-5">
-        <?php if ($toko) { ?>
+        <?php if (isset($toko)) { ?>
             <div class="row">
                 <?php if (session()->getFlashdata('pesan')) : ?>
                     <div class="alert alert-success" role="alert">
@@ -85,18 +85,26 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php foreach ($barang as $brg) { ?>
+                                                        <?php if (isset($barang)) { ?>
+                                                            <?php foreach ($barang as $brg) { ?>
+                                                                <tr>
+                                                                    <td class="align-middle"><img src="<?= base_url('assets/img_barang/' . $brg['foto_barang_path']); ?>" alt="" width="50" height="50"></td>
+                                                                    <td><?= $brg['nama_barang']; ?></td>
+                                                                    <td class="align-middle">
+                                                                        <form method="post">
+                                                                            <input type="hidden" name="id_barang" value="<?= $brg['id_barang']; ?>">
+                                                                            <button type="submit" name="detail_barang" formaction="<?= base_url('toko/barang/detail'); ?>" class="btn btn-info btn-sm btn-icon"><i class="fas fa-eye"></i></button>
+                                                                            <button type="submit" name="edit_barang" formaction="<?= base_url('toko/barang/edit'); ?>" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i></button>
+                                                                            <button type="button" onclick="hapusBarang('<?= $brg['id_barang']; ?>')" name="hapus_barang" formaction="#" class="btn btn-danger btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#modalHapusBarang"><i class="fas fa-trash"></i></button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php }
+                                                        } else { ?>
                                                             <tr>
-                                                                <td class="align-middle"><img src="<?= base_url('assets/img_barang/' . $brg['foto_barang_path']); ?>" alt="" width="50" height="50"></td>
-                                                                <td><?= $brg['nama_barang']; ?></td>
-                                                                <td class="align-middle">
-                                                                    <form method="post">
-                                                                        <input type="hidden" name="id_barang" value="<?= $brg['id_barang']; ?>">
-                                                                        <button type="submit" name="detail_barang" formaction="<?= base_url('toko/barang/detail'); ?>" class="btn btn-info btn-sm btn-icon"><i class="fas fa-eye"></i></button>
-                                                                        <button type="submit" name="edit_barang" formaction="#" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i></button>
-                                                                        <button type="submit" name="hapus_barang" formaction="#" class="btn btn-danger btn-sm btn-icon"><i class="fas fa-trash"></i></button>
-                                                                    </form>
-                                                                </td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
                                                             </tr>
                                                         <?php } ?>
                                                     </tbody>
@@ -146,6 +154,27 @@
                 </div>
             </div>
         <?php } ?>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalHapusBarang" tabindex="-1" aria-labelledby="modalHapusBarangLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="modalHapusBarangLabel"><i class="fas fa-campground"></i> Share<span style="color:#48af48">Camp</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah anda yakin ingin menghapus barang ini ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <form action="<?= base_url("toko/barang/hapus"); ?>" method="post">
+                        <input type="hidden" id="id-barang-hapus" name="id_barang">
+                        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
