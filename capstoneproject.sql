@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2021 at 12:03 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Dec 09, 2021 at 03:30 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -114,16 +114,25 @@ CREATE TABLE `tb_user` (
   `id_user` int(5) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `nama` varchar(255) NOT NULL
+  `nama` varchar(255) NOT NULL,
+  `no_ktp` varchar(50) DEFAULT NULL,
+  `kota` varchar(100) DEFAULT NULL,
+  `alamat` varchar(500) DEFAULT NULL,
+  `no_tlp` varchar(50) DEFAULT NULL,
+  `no_rek` varchar(50) DEFAULT NULL,
+  `nama_bank` varchar(100) DEFAULT NULL,
+  `atas_nama_bank` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_user`, `email`, `password`, `nama`) VALUES
-(1, 'adji@gmail.com', '12345', 'adji nugraha'),
-(2, 'putra@gmail.com', '54321', 'putra nugraha');
+INSERT INTO `tb_user` (`id_user`, `email`, `password`, `nama`, `no_ktp`, `kota`, `alamat`, `no_tlp`, `no_rek`, `nama_bank`, `atas_nama_bank`, `created_at`, `updated_at`) VALUES
+(13, 'adji@gmail.com', '123', 'adji putra nugraha', NULL, 'Bandung', 'Jl. Sukasari 2', '085155299774', '111', 'BCA', 'adji nugraha', '2021-12-09 07:36:25', '2021-12-09 08:25:42'),
+(16, 'nugraha@gmail.com', '123', 'nugraha', NULL, 'Bandung', 'Jl. Sukasari 2', '08777', '000', 'BRI', 'Nugraha Nugraha', '2021-12-09 07:44:29', '2021-12-09 08:06:33');
 
 --
 -- Indexes for dumped tables
@@ -191,7 +200,7 @@ ALTER TABLE `tb_toko`
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
