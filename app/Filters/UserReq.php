@@ -11,7 +11,7 @@ class UserReq implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         // Do something here
-        if(!session()->get('id')){
+        if(!session()->get('masuk')){
             session()->setFlashdata('errLoginReq','Silahkan Login terlebih dahulu.');
             return redirect()->to('/login');
         }

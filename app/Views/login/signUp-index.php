@@ -12,6 +12,19 @@
           <div class="row">
             <div class="col">
               <div class="mb-3">
+                <label for="nama" class="form-label fw-light"
+                  >Nama</label
+                >
+                <input
+                  type="text"
+                  class="form-control fw-light"
+                  id="nama"
+                  aria-describedby="emailHelp"
+                  name="nama"
+                />
+                <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+              </div>
+              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label fw-light"
                   >Email</label
                 >

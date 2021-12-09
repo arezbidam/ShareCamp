@@ -20,6 +20,11 @@
             <?= session()->getFlashdata('errLoginReq'); ?>
           </div>
         <?php endif ?>
+        <?php if (session()->getFlashdata('Registerred')) : ?>
+          <div class="alert alert-danger">
+            <?= session()->getFlashdata('Registerred'); ?>
+          </div>
+        <?php endif ?>
         <form action="Login/signIn" method="POST" class="">
           <?= csrf_field(); ?>
           <div class="mb-3">

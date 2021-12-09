@@ -13,26 +13,25 @@ class Register extends BaseController
 
   public function index()
   {
+    
     $data_pendaftaran = [
       $email_reg = $this->request->getVar('email'),
       $password_reg = $this->request->getVar('password'),
       $nama_reg = $this->request->getVar('nama'),
     ];
     // dd($this->request->getVar());
+    
+    if(!$this->validate([
+      $email_reg => 'required' 
+    ]))
+    
     $this->UserModel->save([
       'id' => $this->UserModel->where('email', $email_reg),
       'email' => $email_reg,
       'password' => $password_reg,
       'nama' => $nama_reg,
     ]);
-
-    $data_Session = [
-      'id' => $this->UserModel->where('email', $email_reg),
-      'email' => $email_reg,
-      'password' => $password_reg,
-      'nama' => $nama_reg,
-    ];
-    session()->set($data_Session);
-    return redirect()->to('Home');
+    session()->setFlashdata('Registerred', 'Silahkan Login.');
+    return redirect()->to('login');
   }
 }

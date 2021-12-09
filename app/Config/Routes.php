@@ -39,6 +39,9 @@ $routes->get('/signUp', 'Login::signUp', ['filter' => 'UserLogged']);
 $routes->get('/register', 'Register::index');
 
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
+$routes->get('/profile', 'Profile::index', ['filter' => 'UserReq']);
+$routes->get('/profile/update/(:num)', 'Profile::update/$1', ['filter' => 'UserReq']);
+
 $routes->get('/toko', 'Toko::index', ['filter' => 'auth']);
 $routes->get('/toko/create', 'Toko::create', ['filter' => 'auth']);
 $routes->post('/toko/save', 'Toko::save', ['filter' => 'auth']);
