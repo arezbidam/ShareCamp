@@ -54,6 +54,18 @@ class Toko extends BaseController
             return view('toko/create', $data);
         }
     }
+    public function edit()
+    {
+        $id_toko = $this->request->getVar('id_toko');
+        $toko_saya = $this->TokoModel->get_toko_by_id_toko($id_toko);
+        $validation =  \Config\Services::validation();
+        $data = [
+            'title' => 'Toko Saya',
+            'toko' => $toko_saya,
+            'validation' => $validation,
+        ];
+        return view('toko/edit', $data);
+    }
     public function save()
     {
         if (!$this->validate([
@@ -105,6 +117,61 @@ class Toko extends BaseController
                 session()->setFlashdata('pesan', 'Registrasi Toko Berhasil');
             } else {
                 session()->setFlashdata('pesan', 'Data Gagal Di Tambahkan');
+            }
+            return redirect()->to('/toko');
+        }
+    }
+    public function update()
+    {
+        if (!$this->validate([
+            'nama_toko' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nama Toko harus diisi',
+                    'is_unique' => 'Nama Toko sudah digunakan'
+                ]
+            ],
+            'alamat_toko' => [
+                'rules' => 'trim|required',
+                'errors' => [
+                    'required' => 'Alamat Toko tidak boleh kosong',
+                ]
+            ],
+            'kota_toko' => [
+                'rules' => 'trim|required',
+                'errors' => [
+                    'required' => 'Alamat Toko tidak boleh kosong',
+                ]
+            ],
+            'no_telp_toko' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Nomor Telepon Toko tidak boleh kosong',
+                    'numeric' => 'Nomor Telepon Toko harus angka'
+                ]
+            ],
+            'deskripsi_toko' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi Toko harus diisi',
+                ]
+            ],
+        ])) {
+            return redirect()->to('/toko/edit')->withInput();
+        } else {
+            $createNewToko = $this->TokoModel->save([
+                'id_toko' => $this->request->getVar('id_toko'),
+                'nama_toko' => $this->request->getVar('nama_toko'),
+                'alamat_toko' => $this->request->getVar('alamat_toko'),
+                'kota_toko' => $this->request->getVar('kota_toko'),
+                'no_telp_toko' => $this->request->getVar('no_telp_toko'),
+                'deskripsi_toko' => $this->request->getVar('deskripsi_toko'),
+                'id_user' => $this->request->getVar('id_user'),
+            ]);
+            if ($createNewToko) {
+                session()->setFlashdata('pesan', 'Update Toko Berhasil');
+            } else {
+                session()->setFlashdata('pesan', 'Update Toko Gagal');
             }
             return redirect()->to('/toko');
         }

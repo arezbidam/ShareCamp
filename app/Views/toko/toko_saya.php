@@ -3,13 +3,13 @@
 
 <body>
     <div class="container mt-5">
+        <?php if (session()->getFlashdata('pesan')) : ?>
+            <div class="alert alert-success" role="alert">
+                <?= session()->getFlashdata('pesan'); ?>
+            </div>
+        <?php endif; ?>
         <?php if (isset($toko)) { ?>
             <div class="row">
-                <?php if (session()->getFlashdata('pesan')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= session()->getFlashdata('pesan'); ?>
-                    </div>
-                <?php endif; ?>
                 <div class="col-sm-3 mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -37,8 +37,8 @@
                                             <?= $toko['nama_toko']; ?>
                                         </h5>
                                         <form action="<?= base_url('toko/edit'); ?>" method="post">
-                                            <input type="hidden" name="id_user" value="<?= session()->get('id'); ?>">
-                                            <button type="submit" name="edit_toko_submit" class="btn btn-sm btn-primary">Edit Toko</button>
+                                            <input type="hidden" name="id_toko" value="<?= $toko['id_toko']; ?>">
+                                            <button type="submit" name="edit_toko_submit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit Toko</button>
                                         </form>
                                     </div>
                                     <hr>
@@ -117,13 +117,51 @@
                         </div>
                         <div class="tab-pane fade" id="pesanan" role="tabpanel" aria-labelledby="pesanan-tab">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card mx-auto mb-4" style="width: 18rem;">
-                                        <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
+                                <div class="col-md-12">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">Sale title</h5>
-                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                            <div class="d-flex justify-content-between">
+                                                <h5>Tabel Pemesanan</h5>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-striped text-center" id="simpleDataTable" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Status</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php if (isset($pemesanan)) { ?>
+                                                            <?php foreach ($pemesanan as $psn) { ?>
+                                                                <tr>
+                                                                    <td class="align-middle"><img src="<?= base_url('assets/img_barang/' . $brg['foto_barang_path']); ?>" alt="" width="50" height="50"></td>
+                                                                    <td><?= $brg['nama_barang']; ?></td>
+                                                                    <td class="align-middle">
+                                                                        <form method="post">
+                                                                            <input type="hidden" name="id_barang" value="<?= $brg['id_barang']; ?>">
+                                                                            <button type="submit" name="detail_barang" formaction="<?= base_url('toko/barang/detail'); ?>" class="btn btn-info btn-sm btn-icon"><i class="fas fa-eye"></i></button>
+                                                                            <button type="submit" name="edit_barang" formaction="<?= base_url('toko/barang/edit'); ?>" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i></button>
+                                                                            <button type="button" onclick="hapusBarang('<?= $brg['id_barang']; ?>')" name="hapus_barang" formaction="#" class="btn btn-danger btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#modalHapusBarang"><i class="fas fa-trash"></i></button>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php }
+                                                        } else { ?>
+                                                            <tr>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                                <td>-</td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -46,13 +46,35 @@ $routes->get('/profile/update/(:num)', 'Profile::update/$1', ['filter' => 'UserR
 
 $routes->get('/toko', 'Toko::index', ['filter' => 'auth']);
 $routes->get('/toko/create', 'Toko::create', ['filter' => 'auth']);
+$routes->post('/toko/edit', 'Toko::edit', ['filter' => 'auth']);
 $routes->post('/toko/save', 'Toko::save', ['filter' => 'auth']);
+$routes->post('/toko/delete', 'Toko::delete', ['filter' => 'auth']);
+$routes->post('/toko/update', 'Toko::update', ['filter' => 'auth']);
 $routes->get('/toko/barang/create', 'Toko::create_barang', ['filter' => 'auth']);
 $routes->post('/toko/barang/save', 'Toko::save_barang', ['filter' => 'auth']);
 $routes->post('/toko/barang/detail', 'Toko::detail_barang', ['filter' => 'auth']);
 $routes->post('/toko/barang/edit', 'Toko::edit_barang', ['filter' => 'auth']);
 $routes->post('/toko/barang/update', 'Toko::update_barang', ['filter' => 'auth']);
 $routes->post('/toko/barang/hapus', 'Toko::delete_barang', ['filter' => 'auth']);
+
+
+
+
+// admin
+$routes->get('/admin/dashboard', 'admin/Dashboard::index');
+$routes->get('/admin/category', 'admin/Category::index');
+$routes->get('/admin/category/add', 'admin/Category::add');
+$routes->post('/admin/category/edit', 'admin/Category::edit');
+$routes->post('/admin/category/save', 'admin/Category::save');
+$routes->post('/admin/category/update', 'admin/Category::update');
+$routes->get('/admin/toko', 'admin/Toko::index');
+$routes->get('/admin/toko/add', 'admin/Toko::add');
+$routes->post('/admin/toko/acc', 'admin/Toko::acc');
+$routes->post('/admin/toko/tolak', 'admin/Toko::tolak');
+$routes->post('/admin/toko/edit', 'admin/Toko::edit');
+$routes->post('/admin/toko/save', 'admin/Toko::save');
+$routes->post('/admin/toko/update', 'admin/Toko::update');
+
 
 /*
  * --------------------------------------------------------------------
