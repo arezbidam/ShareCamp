@@ -13,8 +13,11 @@
     <div class="col-lg-3">
       <div class="card profile-menu rounded-3" id="profile-menu">
         <div class="profile-menu__header">
+          <div id="input-ava-container">
+            
+          </div>
           <img class="mt-4" src="assets/img/avatar.png" alt="">
-          <p class="mt-2 fw-bold fs-5"><?= session()->get('nama') ?></p>
+          <p class="mt-3 fw-bold fs-5"><?= strtoupper($data_user['nama']) ?></p>
         </div>
         <div class="profile-menu__tabs p-2">
           <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -47,6 +50,12 @@
                   <?= session()->getFlashdata('err_profile_updated'); ?>
                 </div>
               <?php endif ?>
+              <?php if (session()->getFlashdata('newPass_fail')) : ?>
+                <div class="alert alert-success">
+                  <?= session()->getFlashdata('newPass_fail'); ?>
+                </div>
+              <?php endif ?>
+              
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" aria-describedby="emailHelp" readonly value="<?= session()->get('email'); ?>">
@@ -70,7 +79,7 @@
               </div>
 
               <!-- <button type="submit" class="btn btn-success mt-2">Perbarui</button> -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Simpan
               </button>
             </div>
@@ -81,20 +90,22 @@
               <div class="form col-8">
                 <div class="mb-3">
                   <label for="password" class="form-label">Password lama</label>
-                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp" value="<?= session()->get('password') ?>" readonly>
+                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp" value="<?= $data_user['password'] ?>" readonly>
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password Baru</label>
-                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="new_password">
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
-                  <label for="password-confirm" class="form-label">Konfirmasi Password</label>
-                  <input type="password" class="form-control" id="password-confirm" aria-describedby="emailHelp">
+                  <label for="password-confirm" class="form-label">Konfirmasi Password baru</label>
+                  <input type="password" class="form-control" id="password-confirm" aria-describedby="emailHelp" name="new_password_confirm">
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
-                <button type="submit" class="btn btn-danger mt-2">Update Password</button>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Simpan
+                </button>
               </div>
             </div>
           </div>
@@ -122,7 +133,7 @@
               <!-- <button type="submit" class="btn btn-success mt-2">Perbarui</button> -->
 
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Simpan
               </button>
             </div>
@@ -144,11 +155,11 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                  <button type="submit" class="btn btn-primary">Perbarui</button>
+                  <button type="submit" class="btn btn-success">Perbarui</button>
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
       </form>
     </div>
   </div>
@@ -156,6 +167,30 @@
 </div>
 </div>
 
+<script>
+  $(document).ready(function() {
+
+    var readURL = function(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('.profile-pic').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $(".file-upload").on('change', function() {
+      readURL(this);
+    });
+
+    $(".upload-button").on('click', function() {
+      $(".file-upload").click();
+    });
+  });
+</script>
 
 
 <?= $this->endSection(); ?>

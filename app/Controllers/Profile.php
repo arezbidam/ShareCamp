@@ -32,15 +32,23 @@ class Profile extends BaseController
         // ];
         $password = $this->UserModel->where('id_user', $id)->first();
         $password = $password['password'];
-        // dd($password);
         
+
         if($this->request->getVar('passwordConfirmation') !== $password){
             session()->setFlashdata('err_pass_confrm', 'Anda salah memasukan password');
         } else {
             // dd($this->request->getVar('nama_bank'));
+            $new_password = $this->request->getVar('new_password');
+            $new_password_confirm = $this->request->getVar('new_password_confirm');
+            if($new_password != $new_password_confirm) {
+                session()->setFlashdata('newPass_fail', 'Password yang anda masukan tidak sesuai');
+                return redirect()->to('profile');
+            }
+
             $this->UserModel->save([
                 'id_user' => $id,
                 'nama' => $this->request->getVar('nama'),   
+                'password' => $new_password,
                 'no_tlp' => $this->request->getVar('no_tlp'),
                 'kota' => $this->request->getVar('kota'),   
                 'alamat' => $this->request->getVar('alamat'),

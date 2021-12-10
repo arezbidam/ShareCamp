@@ -1,3 +1,7 @@
+:root {
+  
+}
+
 body {
   box-sizing: border-box;
 }
@@ -126,6 +130,14 @@ input[type="color"]:focus,
 .profile-menu__header {
   text-align: center;
 }
+
+/* avatar */
+
+
+/* end avatar */
+
+
+
 .profile-menu__header > img {
   width: 100px;
   height: 100px;
@@ -135,13 +147,10 @@ input[type="color"]:focus,
 }
 
 .profile-menu__tabs {
-  margin-top: 20px;
 }
 
 .profile-menu__tabs > ul > li {
   list-style-type: none;
-  background-color: red;
-  margin-top: 10px;
 }
 .profile-menu__tabs > button > ul > li > a {
   display: inline-block;
@@ -157,3 +166,7 @@ input[type="color"]:focus,
   /* color: white; */
 }
 /* End-profile */
+
+/* products */
+
+/* endproducts */

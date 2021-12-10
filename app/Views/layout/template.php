@@ -31,6 +31,8 @@
   <!-- sweet alert -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
 
   <title><?= $title ?></title>
 </head>
@@ -49,7 +51,7 @@
               <a class="nav-link active" aria-current="page" href="<?= base_url(); ?>">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Products</a>
+              <a class="nav-link active" aria-current="page" href="/products">Products</a>
             </li>
             <?php if (!session()->get('id')) : ?>
               <li class="nav-item">

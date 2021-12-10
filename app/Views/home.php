@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row" id="home-banner">
             <div class="col">
-                <h1 class="text-center">Temukan Barang <span style="color:#48af48">terbaik</span> Pilihanmu</h1>
+                <h1 class="text-center">Temukan Barang <span style="color:#48af48">Terbaik</span> Pilihanmu</h1>
                 <h2 class="text-center">Cari barang keperluanmu menggunakan fitur filter, kamu juga dapat mencari teman satu destinasi untuk melakukan pemesanan bersama!</h2>
             </div>
         </div>
@@ -77,18 +77,24 @@
                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Recent</button>
             </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content p-4" id="myTabContent">
             <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mx-auto mt-4 mb-4" style="width: 18rem;">
-                            <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Featured title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="col-md-12 d-flex flex-row justify-content-start">
+                        <?php foreach ($barang as $barang) : ?>
+                            <div class="card mx-auto mt-4 mb-4" style="width: 15rem;">
+                                <div class="p-4">
+                                    <img src="<?= base_url('assets/img_barang/' . $barang['foto_barang_path']); ?>" class="card-img-top" alt="<?= $barang['foto_barang_path'] ?>">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $barang['nama_barang'] ?></h5>
+                                    <div class="description">
+                                        <p class="card-text">Rp. <?= $barang['harga'] ?></p>
+                                    </div>
+                                    <a href="" class="btn btn-primary mt-3">Cek detail</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
@@ -98,7 +104,8 @@
                         <div class="card mx-auto mt-4 mb-4" style="width: 18rem;">
                             <img src="<?= base_url('assets/img/img1.jpg'); ?>" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Sale title</h5>
+
+                                <h5 class="card-title">Recent title</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 <a href="#" class="btn btn-primary">Go somewhere</a>
                             </div>

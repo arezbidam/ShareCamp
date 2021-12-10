@@ -38,6 +38,8 @@ $routes->get('/signIn', 'Login::signIn');
 $routes->get('/signUp', 'Login::signUp', ['filter' => 'UserLogged']);
 $routes->get('/register', 'Register::index');
 
+$routes->get('/products', 'products::index');
+
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/profile/update/(:num)', 'Profile::update/$1', ['filter' => 'UserReq']);
