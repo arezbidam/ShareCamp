@@ -52,7 +52,7 @@
               <div class="description">
                 <p class="card-text">Rp. <?= $barang['harga'] ?></p>
               </div>
-              <a href="" class="btn btn-primary mt-3">Cek detail</a>
+              <a href="<?= base_url('products/detail/' . $barang['id_barang']); ?>" class="btn btn-primary mt-3">Cek detail</a>
             </div>
           </div>
         <?php endforeach ?>

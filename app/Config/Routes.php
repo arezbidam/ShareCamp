@@ -38,7 +38,11 @@ $routes->get('/signIn', 'Login::signIn');
 $routes->get('/signUp', 'Login::signUp', ['filter' => 'UserLogged']);
 $routes->get('/register', 'Register::index');
 
+$routes->get('/keranjang', 'Keranjang::index');
+
 $routes->get('/products', 'products::index');
+$routes->get('/products/detail/(:num)', 'products::detail/$1');
+$routes->post('/products/keranjang/add', 'products::add_keranjang');
 
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'UserReq']);

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2021 at 04:40 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.0.13
+-- Generation Time: Dec 10, 2021 at 01:09 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -49,8 +49,7 @@ INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `foto_barang_path`, `katego
 (6, 'kasur', '2_1639076788_ebd6fc1aad35c7b4c4a6.png', '1', 'Tenda Berkemah dengan Lubang Ventilasi, Tahan Angin, Tahan Hujan, Tabir Surya, Perlindungan Ultraviolet, Tenda Gazebo Instan', 23, '10000.00', 'Tersedia', 2, '2021-12-09 06:06:28', '2021-12-10 03:00:31'),
 (7, 'barang 2', '2_1639099320_ae3060a4458e71bf74b2.png', '1', 'loremloremloremloremloremloremlorem\r\n', 12, '20000.00', 'Tersedia', 2, '2021-12-09 12:22:00', '2021-12-10 03:00:36'),
 (8, 'barang 3', '2_1639099529_d2b66445d8e0aa4e6678.png', '1', 'qs', 11, '30000.00', 'Tersedia', 2, '2021-12-09 12:25:29', '2021-12-10 03:00:43'),
-(9, 'barang 4', '2_1639099549_60aaf31744a9af69065d.png', '1', 'dscsd', 12, '400000.00', 'Tersedia', 2, '2021-12-09 12:25:49', '2021-12-10 03:00:47'),
-(10, 'barang x', '2_1639099320_ae3060a4458e71bf74b2.png', 'tenda', 'sASA', 23, '450000.00', '', 3, '2021-12-10 02:05:06', '2021-12-10 03:00:53');
+(9, 'barang 4', '2_1639099549_60aaf31744a9af69065d.png', '1', 'dscsd', 12, '400000.00', 'Tersedia', 2, '2021-12-09 12:25:49', '2021-12-10 03:00:47');
 
 -- --------------------------------------------------------
 
@@ -61,15 +60,41 @@ INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `foto_barang_path`, `katego
 CREATE TABLE `tb_categories` (
   `id_categories` int(100) NOT NULL,
   `nama_categories` varchar(100) NOT NULL,
-  `keterangan_categories` text NOT NULL
+  `keterangan_categories` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_categories`
 --
 
-INSERT INTO `tb_categories` (`id_categories`, `nama_categories`, `keterangan_categories`) VALUES
-(1, 'Tenda', 'Tenda adalah tempat pelindung yang terdiri dari lembaran kain atau bahan lainnya menutupi yang melekat pada kerangka tiang atau menempel pada tali pendukung.');
+INSERT INTO `tb_categories` (`id_categories`, `nama_categories`, `keterangan_categories`, `created_at`, `updated_at`) VALUES
+(1, 'Tenda', 'Tenda adalah tempat pelindung yang terdiri dari lembaran kain atau bahan lainnya menutupi yang melekat pada kerangka tiang atau menempel pada tali pendukung.', '2021-12-10 10:20:36', '2021-12-09 21:38:58'),
+(2, 'Sleeping Bag', 'sebuah kantong tidur yang bisa digunakan untuk kegiatan outdoor', '2021-12-09 21:20:44', '2021-12-09 21:20:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_keranjang`
+--
+
+CREATE TABLE `tb_keranjang` (
+  `id_keranjang` int(255) NOT NULL,
+  `id_user` int(255) NOT NULL,
+  `id_toko` int(255) NOT NULL,
+  `id_barang` int(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_keranjang`
+--
+
+INSERT INTO `tb_keranjang` (`id_keranjang`, `id_user`, `id_toko`, `id_barang`, `created_at`, `updated_at`) VALUES
+(1, 13, 2, 8, '2021-12-09 22:44:37', '2021-12-09 22:44:37'),
+(2, 13, 2, 6, '2021-12-09 22:44:56', '2021-12-09 22:44:56');
 
 -- --------------------------------------------------------
 
@@ -107,8 +132,8 @@ CREATE TABLE `tb_toko` (
 --
 
 INSERT INTO `tb_toko` (`id_toko`, `nama_toko`, `kota_toko`, `alamat_toko`, `no_telp_toko`, `deskripsi_toko`, `status_toko`, `id_user`, `created_at`, `updated_at`) VALUES
-(2, 'rental cirebon', 'cirebon', 'jln. lobunta raya', '085324009008', '<p>toko rental alat2 outdoor</p>', 'Menunggu Konfirmasi', '13', '2021-12-05 23:46:21', '2021-12-10 02:01:54'),
-(3, 'bandung store', 'bandung', '', '', '', '', '16', '2021-12-10 02:03:05', '2021-12-10 02:04:20');
+(2, 'rental cirebon', 'Cirebon', 'jln. lobunta raya', '085324009008', '<p>toko rental alat2 outdoor</p>', 'DITOLAK', '13', '2021-12-05 23:46:21', '2021-12-09 21:56:12'),
+(3, 'bandung store', 'bandung', '-', '0', '-', 'APPROVED', '16', '2021-12-10 02:03:05', '2021-12-09 21:54:54');
 
 -- --------------------------------------------------------
 
@@ -157,6 +182,12 @@ ALTER TABLE `tb_categories`
   ADD PRIMARY KEY (`id_categories`);
 
 --
+-- Indexes for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD PRIMARY KEY (`id_keranjang`);
+
+--
 -- Indexes for table `tb_login`
 --
 ALTER TABLE `tb_login`
@@ -188,7 +219,13 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT for table `tb_categories`
 --
 ALTER TABLE `tb_categories`
-  MODIFY `id_categories` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categories` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  MODIFY `id_keranjang` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_login`

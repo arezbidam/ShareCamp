@@ -59,7 +59,7 @@
               </li>
             <?php else : ?>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-shopping-cart fa-xs"></i> Cart</a>
+                <a class="nav-link active" aria-current="page" href="<?= base_url('/keranjang'); ?>"><i class="fas fa-shopping-cart fa-xs"></i> Cart</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
