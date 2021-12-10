@@ -41,4 +41,9 @@ class BarangModel extends Model
 
         return $join;
     }
+
+    public function get_barang_by_filter_asc()
+    {
+        return $this->orderBy('harga', 'ASC')->get()->getResultArray();
+    }
 }

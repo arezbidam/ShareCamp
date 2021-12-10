@@ -17,35 +17,44 @@ class Products extends BaseController
 
   public function index()
   {
-    
+
     $data = [
       'title' => 'Produk',
-      'filter_title' => null  ,
+      'filter_title' => null,
       'data_user' => $this->UserModel->where('id_user', session()->get('id'))->first(),
       'categories' => $this->CategoriesModel->findAll(),
-      'barang' => $this->BarangModel->findAll(),
+      'barang' => $this->BarangModel->orderBy('harga', 'DESC')->findAll(),
       // 'barang_detail' => $this->BarangModel->get_barang_detail(),
     ];
     // dd($data['filter_city']);
     return view('pages/products', $data);
   }
-  
+
   public function filter_city()
   {
-    # code...
-    
     $filters = [
       'city' => $this->request->getVar('city_check'),
     ];
-    
+
     $data = [
       'title' => 'Produk',
-      'filter_title' => $filters['city'],
+      'filter_title' => '<span> Menampilkan daftar produk dari ' . '<span class="fw-bold" >' . $filters['city'] . ' </span> </span>',
       'barang' => $this->BarangModel->get_barang_by_city($filters['city']),
       'data_user' => $this->UserModel->where('id_user', session()->get('id'))->first(),
     ];
-    // dd($data['filter_city']);
+    return view('pages/products', $data);
+  }
+
+  public function filter_asc()
+  {
+    if ($this->request->getVar('asc_check') == true) {
+      $data = [
+        'title' => 'Produk',
+        'filter_title' => '<span> Menampilkan daftar berdasarkan harga ' . '<span class="fw-bold" > Termurah </span> </span>',
+        'barang' => $this->BarangModel->get_barang_by_filter_asc(),
+        'data_user' => $this->UserModel->where('id_user', session()->get('id'))->first(),
+      ];
       return view('pages/products', $data);
     }
   }
-  
+}
