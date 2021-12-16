@@ -67,6 +67,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="<?= base_url(); ?>/profil">Profile</a></li>
+                  <li><a class="dropdown-item" href="<?= base_url(); ?>/pemesanan_saya">Pesanan Saya</a></li>
                   <li><a class="dropdown-item" href="<?= base_url(); ?>/toko">Toko Saya</a></li>
                   <li>
                     <hr class="dropdown-divider">

@@ -30,10 +30,9 @@
                                                 <td><?= $key['nama_barang']; ?></td>
                                                 <td><?= $key['harga']; ?></td>
                                                 <td class="align-middle">
-                                                    <form method="post" action="/products/checkout">
-                                                        <input type="hidden" name="id_keranjang" value="<?= $key['id_keranjang']; ?>">
+                                                    <form method="post">
                                                         <input type="hidden" name="id_barang" value="<?= $key['id_barang']; ?>">
-                                                        <button type="submit" class="btn btn-primary btn-sm">Checkout</button>
+                                                        <button type="button" class="btn btn-primary btn-sm">Checkout</button>
                                                         <!-- <button type="submit" name="detail_barang" formaction="<?= base_url('toko/barang/detail'); ?>" class="btn btn-info btn-sm btn-icon"><i class="fas fa-eye"></i></button>
                                                         <button type="submit" name="edit_barang" formaction="<?= base_url('toko/barang/edit'); ?>" class="btn btn-warning btn-sm btn-icon"><i class="fas fa-edit"></i></button>
                                                         <button type="button" onclick="hapusBarang('<?= $key['id_barang']; ?>')" name="hapus_barang" formaction="#" class="btn btn-danger btn-sm btn-icon" data-bs-toggle="modal" data-bs-target="#modalHapusBarang"><i class="fas fa-trash"></i></button> -->

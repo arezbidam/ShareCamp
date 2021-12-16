@@ -40,6 +40,12 @@
           <?= $filter_title ?>
         </div>
       <?php endif ?>
+      <?php if (session()->getFlashdata('pemesanan_oke')) : ?>
+        <?= session()->getFlashdata('pemesanan_oke') ?>
+      <?php endif ?>
+      <?php if (session()->getFlashdata('pemesanan_fail')) : ?>
+        <?= session()->getFlashdata('pemesanan_fail') ?>
+      <?php endif ?>
 
       <div class="lists mt-3 d-flex flex-row justify-content-start">
         <?php foreach ($barang as $barang) : ?>

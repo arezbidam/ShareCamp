@@ -42,11 +42,22 @@ $routes->get('/keranjang', 'Keranjang::index');
 
 $routes->get('/products', 'products::index');
 $routes->get('/products/detail/(:num)', 'products::detail/$1');
+$routes->get('/products/sharing/(:num)', 'products::detail_sharing/$1');
 $routes->post('/products/keranjang/add', 'products::add_keranjang');
+$routes->post('/products/keranjang/add', 'products::add_keranjang');
+$routes->post('/products/checkout', 'products::checkout');
 
 $routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/profile', 'Profile::index', ['filter' => 'UserReq']);
 $routes->get('/profile/update/(:num)', 'Profile::update/$1', ['filter' => 'UserReq']);
+
+$routes->get('/pemesanan_saya', 'Pemesanan::index', ['filter' => 'UserReq']);
+$routes->get('/pemesanan/detail/(:num)', 'Pemesanan::detail/$1', ['filter' => 'UserReq']);
+$routes->get('/pemesanan/detail_share/(:num)', 'Pemesanan::detail/$1', ['filter' => 'UserReq']);
+$routes->get('/pemesanan/share_add', 'Pemesanan::share_add', ['filter' => 'UserReq']);
+$routes->get('/pemesanan/share_add_2', 'Pemesanan::share_add_2', ['filter' => 'UserReq']);
+
+
 
 $routes->get('/toko', 'Toko::index', ['filter' => 'auth']);
 $routes->get('/toko/create', 'Toko::create', ['filter' => 'auth']);

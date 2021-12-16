@@ -15,16 +15,6 @@ class BarangModel extends Model
     {
         return $this->where(['id_toko' => $id_toko])->findAll();
     }
-    
-    // public function get_barang_detail($id)
-    // {
-        # code...
-        // $join = $this->db->table('tb_barang')
-        // ->join('tb_toko', 'tb_barang.id_toko=tb_toko.id_toko')
-        // // ->join('table_perawat', 'table_tindakan.id_perawat=table_perawat.id_perawat')
-        // ->get()->getResultArray();
-        // return $join;
-    // }
 
     public function get_barang_by_id_barang($id_barang)
     {
@@ -38,7 +28,6 @@ class BarangModel extends Model
         ->join('tb_toko', 'tb_barang.id_toko=tb_toko.id_toko')
         ->where('kota_toko', $city)
         ->get()->getResultArray();
-
         return $join;
     }
 

@@ -14,7 +14,7 @@
       <div class="card profile-menu rounded-3" id="profile-menu">
         <div class="profile-menu__header">
           <div id="input-ava-container">
-            
+
           </div>
           <img class="mt-4" src="assets/img/avatar.png" alt="">
           <p class="mt-3 fw-bold fs-5"><?= strtoupper($data_user['nama']) ?></p>
@@ -55,7 +55,7 @@
                   <?= session()->getFlashdata('newPass_fail'); ?>
                 </div>
               <?php endif ?>
-              
+
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" aria-describedby="emailHelp" readonly value="<?= session()->get('email'); ?>">
@@ -95,12 +95,12 @@
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password Baru</label>
-                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="new_password">
+                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp" name="new_password" placeholder=" x" onfocus="this.value=''" value="<?= $data_user['password'] ?>">
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <div class="mb-3">
                   <label for="password-confirm" class="form-label">Konfirmasi Password baru</label>
-                  <input type="password" class="form-control" id="password-confirm" aria-describedby="emailHelp" name="new_password_confirm">
+                  <input type="password" class="form-control" id="password-confirm" aria-describedby="emailHelp" name="new_password_confirm" onfocus="this.value=''" value="<?= $data_user['password'] ?>">
                   <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
