@@ -33,32 +33,19 @@
                                     <p class="card-text">Deskripsi :</p>
                                     <?= $barang['deskripsi']; ?>
                                 </div>
-                                <div class="banner">
-                                    <div class="alert alert-success" role="alert">
-                                        <!-- <h5 class="alert-heading">Hi, ayo pesan bersama <strong>Nama orang 1</strong></h5> -->
-                                        <h6>
-                                            <p class="mb-0">Orang yang memesan produk ini adalah <a href="" class="alert-link">Nama orang 1</a>
-                                        </h6>
-                                        <div class="row">
-                                            <div class="col-1 ms-2">
-                                                <div class="user-1">
-                                                    <a href=""><i class="bi bi-person-circle text-dark" style="font-size: 40px;"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-1 ms-3">
-                                                <div class="user-you">
-                                                    <form method="post" action="<?= base_url('/pemesanan/share_Add') ?>">
-                                                        <input type="hidden" name="id_barang" id="" type="hidden" value="<?= $barang['id_barang'] ?>">
-                                                        <button type="submit" class="btn btn-outline-secondary">
-                                                            <i class="bi bi-plus-circle-fill text-dark" style="font-size:30px"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <p class="mb-0">pastikan anda sudah menghubungi Nama orang 1 untuk melanjutkan pesanan, silahkan hubungi melalui Whatsapp <a href="" class="alert-link">di sini,</a></p>
-                                    </div>
+                                <h6>
+                                    <p class="mb-0">Jadilah yang pertama memesan barang ini!</p>
+                                </h6>
+                                <div class="user-you">
+                                    <form method="post" action="<?= base_url('/pemesanan/share_Add') ?>">
+                                        <input type="hidden" name="id_barang" id="" type="hidden" value="<?= $barang['id_barang'] ?>">
+                                        <button type="submit" class="btn btn-outline-secondary">
+                                            <i class="bi bi-plus-circle-fill text-dark" style="font-size:30px"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="alert alert-warning mt-4" role="alert">
+                                    <p class="mb-0">pastikan anda sudah menghubungi Nama orang 1 untuk melanjutkan pesanan, silahkan hubungi melalui Whatsapp <a href="" class="alert-link">di sini,</a></p>
                                 </div>
                             </div>
                         </div>
@@ -74,6 +61,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>id pesanan</th>
+                                        <th>Destinasi</th>
                                         <th>User 1</th>
                                         <th>User 2</th>
                                         <th>Action</th>
@@ -86,17 +74,62 @@
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <td><?= $key['id_share'] ?></td>
-                                                <td><?= $key['id_user_1'] ?></td>
-                                                <td><?= $key['id_user_2'] ?></td>
-                                                <td>
-                                                    <form method="post" action="<?= base_url('/pemesanan/share_Add_2') ?>">
-                                                        <input type="hidden" name="id_share" id="" type="hidden" value="<?= $key['id_share'] ?>">
-                                                        <input type="hidden" name="id_barang" id="" type="hidden" value="<?= $barang['id_barang'] ?>">
-                                                        <button type="submit" class="btn btn-sm btn-success">
-                                                            Join
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                <td>Belum diset</td>
+                                                <?php if ($key['id_user_1'] == session()->get('id')) : ?>
+
+                                                    <td>
+                                                        <?php if ($key['id_user_1'] == session()->get('id')) : ?>
+                                                            <?= '<strong> Anda </strong>' ?>
+                                                        <?php else : ?>
+                                                            <?= $key['id_user_1'] ?>
+                                                        <?php endif ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $key['id_user_2'] ?>
+                                                    </td>
+                                                    <?php if ($key['id_user_2'] == null) : ?>
+                                                        <td>
+                                                            <span class="badge bg-warning text-dark">Menunggu user 2</span>
+                                                        </td>
+                                                    <?php else : ?>
+                                                        <td>
+                                                            <button class="btn btn-sm btn-success">Detail</button>
+                                                        </td>
+                                                    <?php endif ?>
+
+                                                <?php else : ?>
+                                                    <td>
+                                                        <?php if ($key['id_user_1'] == session()->get('id')) : ?>
+                                                            <?= '<strong> Anda </strong>' ?>
+                                                        <?php else : ?>
+                                                            <?= $key['id_user_1'] ?>
+                                                        <?php endif ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if ($key['id_user_2'] == session()->get('id')) : ?>
+                                                            <?= '<strong> Anda </strong>' ?>
+                                                        <?php else : ?>
+                                                            <?= $key['id_user_2'] ?>
+                                                        <?php endif ?>
+                                                    </td>
+                                                    <td class="d-flex justify-content-evenly">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <a href="<?= base_url('/') ?>" class="btn btn-sm btn-success"><i class="bi bi-whatsapp"></i></a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <form method="post" action="<?= base_url('/pemesanan/share_Add_2') ?>">
+                                                                    <input type="hidden" name="id_share" id="" type="hidden" value="<?= $key['id_share'] ?>">
+                                                                    <input type="hidden" name="id_barang" id="" type="hidden" value="<?= $barang['id_barang'] ?>">
+                                                                    <button type="submit" class="btn btn-sm btn-success">
+                                                                        Join
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                <?php endif ?>
+
                                             </tr>
                                             <?php $i++; ?>
                                         <?php }
