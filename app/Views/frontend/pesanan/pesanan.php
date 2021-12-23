@@ -65,37 +65,44 @@
                                     <h4 class="border-bottom border-primary"><?= $key['nama_toko']; ?></h4>
                                     <?php
                                     $no = 1;
-                                    foreach ($detail_pesanan as $detail) { ?>
-                                        <table width=100% class="table-sm">
-                                            <th>
-                                                <tr>
-                                                    <th colspan="2"><?= $no++; ?>. <?= $detail['nama_produk']; ?></th>
-                                                </tr>
-                                            </th>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Tanggal Sewa</td>
-                                                    <td><?= date("d M Y", strtotime($detail['tgl_mulai_sewa'])); ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Tanggal Kembali</td>
-                                                    <td><?= date("d M Y", strtotime($detail['tgl_berakhir_sewa'])); ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jumlah Sewa</td>
-                                                    <td><?= $detail['jumlah_sewa']; ?></td>
-                                                </tr>
-                                                <tr class="border-bottom">
-                                                    <td>Harga Sewa Per Hari</td>
-                                                    <td><?= number_format($detail['harga_sewa_per_hari'], 0, ',', '.'); ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Total Sewa Per Hari</td>
-                                                    <td class="text-right">Rp. <?= number_format($detail['total_biaya_sewa'], 0, ',', '.'); ?></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    <?php } ?>
+                                    foreach ($detail_pesanan as $detail) {
+                                        if ($detail['no_pesanan'] == $key['no_pesanan']) {
+                                    ?>
+                                            <table width=100% class="table-sm">
+                                                <th>
+                                                    <tr>
+                                                        <th colspan="2"><?= $no++; ?>. <?= $detail['nama_produk']; ?></th>
+                                                    </tr>
+                                                </th>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Tanggal Sewa</td>
+                                                        <td><?= date("d M Y", strtotime($detail['tgl_mulai_sewa'])); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tanggal Kembali</td>
+                                                        <td><?= date("d M Y", strtotime($detail['tgl_berakhir_sewa'])); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Lama Sewa</td>
+                                                        <td><?= $detail['lama_sewa']; ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jumlah Sewa</td>
+                                                        <td><?= $detail['jumlah_sewa']; ?></td>
+                                                    </tr>
+                                                    <tr class="border-bottom">
+                                                        <td>Harga Sewa Per Hari</td>
+                                                        <td><?= number_format($detail['harga_sewa_per_hari'], 0, ',', '.'); ?></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Sewa Per Hari</td>
+                                                        <td class="text-right">Rp. <?= number_format($detail['total_biaya_sewa'], 0, ',', '.'); ?></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                    <?php }
+                                    } ?>
                                 </div>
                             </div>
                         </div>
