@@ -30,7 +30,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="kota-toko" class="form-label">Kota</label>
-                            <input type="text" class="form-control" id="kota-toko" name="kota_toko" autofocus value="<?= old('kota_toko') ? old('kota_toko') : $toko['kota_toko']; ?>" required>
+                            <select name="kota_toko" id="" class="form-control select2" required>
+                                <option value="">Pilih Kota</option>
+                                <?php foreach ($kota as $key) { ?>
+                                    <option value="<?= $key['nama_kota']; ?>" <?= $toko['kota_toko'] == $key['nama_kota'] ? "selected" : ""; ?>><?= $key['nama_kota']; ?></option>
+                                <?php } ?>
+                            </select>
                             <?= ($validation->hasError('kota_toko')) ? '<span class="badge bg-danger text-white">' . $validation->getError('kota_toko') . '</span>' : ''; ?>
                         </div>
                         <div class="mb-3">

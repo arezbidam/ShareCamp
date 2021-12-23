@@ -19,6 +19,10 @@ class TokoModel extends Model
     {
         return $this->findAll();
     }
+    public function delete_produk($id_toko)
+    {
+        return $this->table("tb_produk")->where('id_toko', $id_toko)->delete();
+    }
     public function get_toko_by_id_toko($id_toko)
     {
         return $this->where(['id_toko' => $id_toko])->first();

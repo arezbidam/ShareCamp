@@ -72,7 +72,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class=" col-md-3">
+                                    <div class=" col-md-2">
                                         <table class="table-sm" width="100%">
                                             <thead>
                                                 <tr>
@@ -102,9 +102,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-md-2 text-right">
+                                    <div class="col-md-3 text-right">
                                         <button type="button" data-toggle="collapse" data-target="#collapse<?= $key['no_pesanan']; ?>" aria-expanded="false" aria-controls="collapse<?= $key['no_pesanan']; ?>" class="btn btn-info mt-3"><i class="fas fa-eye"></i></button>
-                                        <button type="button" data-toggle="modal" data-target="#modalBayarPesanan" class="btn btn-primary mt-3"><i class="fas"></i>Rp</button>
+                                        <button type="button" onclick="bayarPesanan('<?= $key['no_pesanan']; ?>')" data-toggle="modal" data-target="#modalBayarPesanan" class="btn btn-primary mt-3"><i class="fas"></i>Rp</button>
+                                        <a href="https://wa.me/<?= $key['no_telp']; ?>" target="_blank" class="btn btn-success mt-3"><i class="fab fa-whatsapp"></i></a>
+                                        <button type="button" onclick="hapusPesanan('<?= $key['no_pesanan']; ?>')" data-toggle="modal" data-target="#modalHapusPesanan" class="btn btn-danger mt-3"><i class="fas fa-window-close"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -204,35 +206,29 @@
         </div>
     </section>
 </div>
-<!-- Modal Tambah ke Keranjang -->
-<div class="modal fade" id="modalTambahKeKeranjang" tabindex="-1" role="dialog" aria-labelledby="modalTambahKeKeranjangLabel" aria-hidden="true">
+<!-- Modal Bayar Pesanan -->
+<div class="modal fade" id="modalBayarPesanan" tabindex="-1" role="dialog" aria-labelledby="modalBayarPesananLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="<?= base_url('shop/keranjang/add'); ?>" method="post">
+        <form action="<?= base_url('toko/pesanan/update-pembayaran'); ?>" method="post">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalTambahKeKeranjangLabel">Tambah Ke Keranjang</h5>
+                    <h5 class="modal-title" id="modalBayarPesananLabel">Update Pembayaran</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" class="form-control" name="id_produk" id="tambah-keranjang-id-produk">
                     <table class="table-sm" width="100%">
                         <tbody>
                             <tr>
-                                <td>Jumlah Sewa</td>
+                                <td>No. Pesanan</td>
                                 <td>:</td>
-                                <td><input type="number" min="1" class="form-control" value="1" name="jumlah_sewa" required></td>
+                                <td> <input type="text" class="form-control" name="no_pesanan" id="bayar-pesanan-no-pesanan" required readonly></td>
                             </tr>
                             <tr>
-                                <td>Mulai Sewa</td>
+                                <td>Jumlah Bayar</td>
                                 <td>:</td>
-                                <td><input type="date" class="form-control" name="tgl_mulai_sewa" required></td>
-                            </tr>
-                            <tr>
-                                <td>Akhir Sewa</td>
-                                <td>:</td>
-                                <td><input type="date" class="form-control" name="tgl_berakhir_sewa" required></td>
+                                <td><input type="number" min="0" class="form-control" name="jumlah_bayar" required></td>
                             </tr>
                         </tbody>
                     </table>
@@ -240,6 +236,37 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-danger">Simpan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Modal Hapus Pesanan -->
+<div class="modal fade" id="modalHapusPesanan" tabindex="-1" role="dialog" aria-labelledby="modalHapusPesananLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="<?= base_url('toko/pesanan/delete'); ?>" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHapusPesananLabel">Batalkan / Hapus Pesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin ingin menghapus pesanan ini ?</p>
+                    <table class="table-sm" width="100%">
+                        <tbody>
+                            <tr>
+                                <td>No. Pesanan</td>
+                                <td>:</td>
+                                <td> <input type="text" class="form-control" name="no_pesanan" id="hapus-pesanan-no-pesanan" required readonly></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </form>

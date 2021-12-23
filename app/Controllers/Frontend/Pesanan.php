@@ -7,6 +7,7 @@ use App\Models\ProdukModel;
 use App\Models\UserModel;
 use App\Models\KategoriModel;
 use App\Models\TokoModel;
+use App\Models\KotaModel;
 use App\Models\PesananModel;
 use App\Models\PesananDetailModel;
 
@@ -17,6 +18,7 @@ class Pesanan extends BaseController
         $this->UserModel = new UserModel();;
         $this->KategoriModel = new KategoriModel();;
         $this->TokoModel = new TokoModel();;
+        $this->KotaModel = new KotaModel();;
         $this->ProdukModel = new ProdukModel();;
         $this->PesananModel = new PesananModel();;
         $this->PesananDetailModel = new PesananDetailModel();;
@@ -24,7 +26,7 @@ class Pesanan extends BaseController
     public function index()
     {
         $toko = $this->TokoModel->get_toko(session()->get('id'));
-        $kota = $this->TokoModel->get_all_toko();
+        $kota = $this->KotaModel->findAll();
         $keyword = $this->request->getVar('keyword');
         $filter_kota = $this->request->getVar('filter_kota');
         $filter_kategori = $this->request->getVar('filter_kategori');
@@ -33,8 +35,9 @@ class Pesanan extends BaseController
             $pesanan = $this->PesananModel
                 ->join('tb_toko', 'tb_toko.id_toko=tb_pesanan.id_toko')
                 ->where('tb_pesanan.id_user', session()->get('id'))->search($keyword);
-            if (!$pesanan) {
-                $this->sweetAlertError("Data Tidak Ditemukan");
+            if ($pesanan->paginate(10, 'produk')) {
+            } else {
+                $this->sweetAlertError("Data " . $keyword . " Tidak Ditemukan");
                 return redirect()->to('pesanan');
             }
         } else {

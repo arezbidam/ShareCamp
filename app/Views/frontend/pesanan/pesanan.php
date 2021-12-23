@@ -43,20 +43,53 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <label>No. Pesanan :</label>
-                                        <h4><?= $key['no_pesanan']; ?></h4>
+                                        <table class="table-sm" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>No. Pesanan :</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><?= $key['no_pesanan']; ?><br>( <?= $key['total_biaya_pesanan'] == $key['sudah_bayar'] ? "Lunas" : "Belum Lunas"; ?> )</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label>Tanggal :</label>
-                                        <h4><?= date("d-m-Y", strtotime($key['tgl_pesanan'])); ?></h4>
+                                    <div class=" col-md-3">
+                                        <table class="table-sm" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tanggal Pesanan :</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><?= date("d-m-Y", strtotime($key['tgl_pesanan'])); ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label>Total :</label>
-                                        <h4>Rp. <?= number_format($key['total_biaya_pesanan'], 0, ',', '.'); ?></h4>
+                                    <div class="col-md-4">
+                                        <table class="table-sm" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Total :</th>
+                                                    <th>Sudah Bayar :</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Rp. <?= number_format($key['total_biaya_pesanan'], 0, ',', '.'); ?></td>
+                                                    <td>Rp. <?= number_format($key['sudah_bayar'], 0, ',', '.'); ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <div class="col-md-3 text-right">
+                                    <div class="col-md-2 text-right">
                                         <button type="button" data-toggle="collapse" data-target="#collapse<?= $key['no_pesanan']; ?>" aria-expanded="false" aria-controls="collapse<?= $key['no_pesanan']; ?>" class="btn btn-info mt-3"><i class="fas fa-eye"></i></button>
                                         <a href="<?= base_url('pesanan/print/' . $key['no_pesanan']); ?>" target="_blank" class="btn btn-primary mt-3"><i class="fas fa-print"></i></a>
+                                        <a href="https://wa.me/<?= $key['no_telp_toko']; ?>" target="_blank" class="btn btn-success mt-3"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
                             </div>

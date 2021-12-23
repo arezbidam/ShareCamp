@@ -158,7 +158,7 @@
                         </div>
                         <div class="card-body">
                             <p class="card-text">Ubah password anda disini.</p>
-                            <a href="" class="btn btn-primary">Ubah Password</a>
+                            <button type="button" data-toggle="modal" data-target="#modalUbahPassword" class="btn btn-primary">Ubah Password</button>
                         </div>
                     </div>
                 </div>
@@ -166,6 +166,42 @@
             </div>
         </div>
     </section>
+    <!-- Modal Ubah Password -->
+    <div class="modal fade" id="modalUbahPassword" tabindex="-1" role="dialog" aria-labelledby="modalUbahPasswordLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?= base_url('profile/ubah-password'); ?>" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalUbahPasswordLabel">Form Ubah Password</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" name="id_produk" id="tambah-keranjang-id-produk">
+                        <table class="table-sm" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td>Password Baru</td>
+                                    <td>:</td>
+                                    <td><input type="password" class="form-control" name="password_baru" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Ulangi Password Baru</td>
+                                    <td>:</td>
+                                    <td><input type="password" class="form-control" name="ulangi_password_baru" required></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-danger">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <?php if (session()->getFlashdata('pesan')) : ?>
         <?= session()->getFlashdata('pesan'); ?>
     <?php endif; ?>

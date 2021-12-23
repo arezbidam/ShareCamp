@@ -85,7 +85,8 @@
                                         <div class="d-block">
                                             <label for="no_telp" class="control-label">No. Telp</label>
                                         </div>
-                                        <input id="no-telp" type="text" class="form-control" name="no_telp" tabindex="5" required>
+                                        <input id="no-telp" type="number" class="form-control" name="no_telp" tabindex="5" required>
+                                        <span class="badge">*Ganti angka 0 diawal dengan 62 (tidak perlu +)</span>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="stepThree" role="tabpanel" aria-labelledby="stepThree-tab">

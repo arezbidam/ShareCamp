@@ -27,6 +27,11 @@ class Produk extends BaseController
                 ->join('tb_toko', 'tb_toko.id_toko=tb_produk.id_toko')
                 ->where('tb_toko.id_user', session()->get('id'))
                 ->search($keyword);
+            if ($produk->paginate(10, 'produk')) {
+            } else {
+                $this->sweetAlertError("Data " . $keyword . " Tidak Ditemukan");
+                return redirect()->to('shop/produk');
+            }
         } else {
             $produk = $this->ProdukModel
                 ->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.kategori_produk')

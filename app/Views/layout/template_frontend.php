@@ -42,144 +42,16 @@
                 <div class="navbar-nav">
                     <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
                 </div>
-                <form class="form-inline ml-auto">
+                <form method="post" action="<?= base_url('shop/produk'); ?>" class="form-inline ml-auto">
                     <ul class="navbar-nav">
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
                     </ul>
                     <div class="search-element">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250" required>
+                        <input class="form-control" name="keyword" type="search" placeholder="Cari Nama Produk" aria-label="Search" data-width="250" required>
                         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
                 <ul class="navbar-nav navbar-right">
-                    <?php if (session()->get('masuk')) { ?>
-                        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
-                            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                                <div class="dropdown-header">Messages
-                                    <div class="float-right">
-                                        <a href="#">Mark All As Read</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown-list-content dropdown-list-message">
-                                    <a href="#" class="dropdown-item dropdown-item-unread">
-                                        <div class="dropdown-item-avatar">
-                                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle">
-                                            <div class="is-online"></div>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Kusnaedi</b>
-                                            <p>Hello, Bro!</p>
-                                            <div class="time">10 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item dropdown-item-unread">
-                                        <div class="dropdown-item-avatar">
-                                            <img alt="image" src="../assets/img/avatar/avatar-2.png" class="rounded-circle">
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Dedik Sugiharto</b>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
-                                            <div class="time">12 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item dropdown-item-unread">
-                                        <div class="dropdown-item-avatar">
-                                            <img alt="image" src="../assets/img/avatar/avatar-3.png" class="rounded-circle">
-                                            <div class="is-online"></div>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Agung Ardiansyah</b>
-                                            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                            <div class="time">12 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-avatar">
-                                            <img alt="image" src="../assets/img/avatar/avatar-4.png" class="rounded-circle">
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Ardian Rahardiansyah</b>
-                                            <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
-                                            <div class="time">16 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-avatar">
-                                            <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle">
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Alfa Zulkarnain</b>
-                                            <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
-                                            <div class="time">Yesterday</div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="dropdown-footer text-center">
-                                    <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-                            <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                                <div class="dropdown-header">Notifications
-                                    <div class="float-right">
-                                        <a href="#">Mark All As Read</a>
-                                    </div>
-                                </div>
-                                <div class="dropdown-list-content dropdown-list-icons">
-                                    <a href="#" class="dropdown-item dropdown-item-unread">
-                                        <div class="dropdown-item-icon bg-primary text-white">
-                                            <i class="fas fa-code"></i>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            Template update is available now!
-                                            <div class="time text-primary">2 Min Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-icon bg-info text-white">
-                                            <i class="far fa-user"></i>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>You</b> and <b>Dedik Sugiharto</b> are now friends
-                                            <div class="time">10 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-icon bg-success text-white">
-                                            <i class="fas fa-check"></i>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            <b>Kusnaedi</b> has moved task <b>Fix bug header</b> to <b>Done</b>
-                                            <div class="time">12 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-icon bg-danger text-white">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            Low disk space. Let's clean it!
-                                            <div class="time">17 Hours Ago</div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <div class="dropdown-item-icon bg-info text-white">
-                                            <i class="fas fa-bell"></i>
-                                        </div>
-                                        <div class="dropdown-item-desc">
-                                            Welcome to Stisla template!
-                                            <div class="time">Yesterday</div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="dropdown-footer text-center">
-                                    <a href="#">View All <i class="fas fa-chevron-right"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                    <?php } ?>
-
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <figure class="avatar mr-2 avatar-sm">
                                 <img alt="image" src="<?= base_url('assets/img/avatar/avatar-1.png'); ?>" class="rounded-circle mr-1">
@@ -211,11 +83,8 @@
                             <a href="<?= base_url(); ?>" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
                         </li>
                         <?php if ($pages == "toko") { ?>
-                            <li class="nav-item <?= $pages == "produk-anda" ? "active" : ""; ?>">
-                                <a href="<?= base_url('toko/produk'); ?>" class="nav-link"><i class="fas fa-database"></i><span>Kelola Produk Anda</span></a>
-                            </li>
-                            <li class="nav-item <?= $pages == "pesanan-toko" ? "active" : ""; ?>">
-                                <a href="<?= base_url('toko/pesanan'); ?>" class="nav-link"><i class="fas fa-copy"></i><span>Pesanan Toko</span></a>
+                            <li class="nav-item <?= $pages == "toko" ? "active" : ""; ?>">
+                                <a href="<?= base_url('toko'); ?>" class="nav-link"><i class="fas fa-database"></i><span>Toko Saya</span></a>
                             </li>
                         <?php } else { ?>
                             <li class="nav-item <?= $pages == "sewa-produk" ? "active" : ""; ?>">
@@ -301,6 +170,16 @@
             $('#tambah-keranjang-id-produk').attr('value', idProduk);
             $('#modalTambahKeKeranjang').modal();
         }
+
+        function bayarPesanan(noPesanan) {
+            $('#bayar-pesanan-no-pesanan').attr('value', noPesanan);
+            $('#modalBayarPesanan').modal();
+        }
+
+        function hapusPesanan(noPesanan) {
+            $('#hapus-pesanan-no-pesanan').attr('value', noPesanan);
+            $('#modalHapusPesanan').modal();
+        }
         $(document).ready(function() {
             $('#dataTable').DataTable();
             $('.dropify').dropify({
@@ -321,7 +200,6 @@
             });
             $('#summernote').summernote({
                 tabsize: 2,
-                height: 120,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],

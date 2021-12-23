@@ -22,7 +22,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="no-telp-toko" class="form-label">No Telp Toko</label>
-                            <input type="text" class="form-control" id="no-telp-toko" name="no_telp_toko" autofocus value="<?= old('no_telp_toko'); ?>" required>
+                            <input type="number" class="form-control" id="no-telp-toko" name="no_telp_toko" autofocus value="<?= old('no_telp_toko'); ?>" required>
+                            <span class="badge">*Ganti angka 0 diawal dengan 62 (tidak perlu +)</span>
                             <?= ($validation->hasError('no_telp_toko')) ? '<span class="badge bg-danger text-white">' . $validation->getError('no_telp_toko') . '</span>' : ''; ?>
                         </div>
                         <div class="mb-3">
@@ -32,7 +33,12 @@
                         </div>
                         <div class="mb-3">
                             <label for="kota-toko" class="form-label">Kota</label>
-                            <input type="text" class="form-control" id="kota-toko" name="kota_toko" autofocus value="<?= old('kota_toko'); ?>" required>
+                            <select name="kota_toko" class="form-control select2" id="" required>
+                                <option value="">Pilih Kota</option>
+                                <?php foreach ($kota as $key) { ?>
+                                    <option value="<?= $key['nama_kota']; ?>"><?= $key['nama_kota']; ?></option>
+                                <?php } ?>
+                            </select>
                             <?= ($validation->hasError('kota_toko')) ? '<span class="badge bg-danger text-white">' . $validation->getError('kota_toko') . '</span>' : ''; ?>
                         </div>
                         <div class="mb-3">

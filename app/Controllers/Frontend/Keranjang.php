@@ -7,6 +7,7 @@ use App\Models\ProdukModel;
 use App\Models\UserModel;
 use App\Models\KategoriModel;
 use App\Models\KeranjangModel;
+use App\Models\KotaModel;
 use App\Models\TokoModel;
 use App\Models\PesananModel;
 use App\Models\PesananDetailModel;
@@ -19,6 +20,7 @@ class Keranjang extends BaseController
         $this->KategoriModel = new KategoriModel();;
         $this->KeranjangModel = new KeranjangModel();;
         $this->TokoModel = new TokoModel();;
+        $this->KotaModel = new KotaModel();;
         $this->ProdukModel = new ProdukModel();;
         $this->PesananModel = new PesananModel();;
         $this->PesananDetailModel = new PesananDetailModel();;
@@ -26,7 +28,7 @@ class Keranjang extends BaseController
     public function index()
     {
         $toko = $this->TokoModel->get_toko(session()->get('id'));
-        $kota = $this->TokoModel->get_all_toko();
+        $kota = $this->KotaModel->findAll();
         $keyword = $this->request->getVar('keyword');
         $filter_kota = $this->request->getVar('filter_kota');
         $filter_kategori = $this->request->getVar('filter_kategori');
@@ -116,7 +118,11 @@ class Keranjang extends BaseController
     public function checkout()
     {
         $checkbox_id_keranjang = $this->request->getVar('checked_id_produk');
-
+        if ($checkbox_id_keranjang) {
+        } else {
+            $this->sweetAlertError("Anda belum memilih produk yang mau Dicheckout");
+            return redirect()->to('/keranjang');
+        }
         $array_id_toko = array();
         $no_pemesanan = $this->no_pemesanan();
         $today = date("Y-m-d");

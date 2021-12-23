@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" id="summernote" style="height: 100px;" class="form-control summernote" required><?= $produk['deskripsi']; ?></textarea>
+                                    <textarea name="deskripsi" id="summernote" style="min-height: 100px;height: auto;" class="form-control" required><?= $produk['deskripsi']; ?></textarea>
                                     <?= ($validation->hasError('deskripsi')) ? '<span class="badge bg-danger">' . $validation->getError('deskripsi') . '</span>' : ''; ?>
                                 </div>
                                 <div class="col-12 text-center">

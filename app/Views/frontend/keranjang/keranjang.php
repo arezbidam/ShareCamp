@@ -48,10 +48,10 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kota">Kota</label>
-                                            <select name="filter_kota" id="" class="form-control" required>
+                                            <select name="filter_kota" id="" class="form-control select2" required>
                                                 <option value="">Pilih Kota</option>
                                                 <?php foreach ($kota as $keyKota) { ?>
-                                                    <option value="<?= $keyKota['kota_toko']; ?>"><?= $keyKota['kota_toko']; ?></option>
+                                                    <option value="<?= $keyKota['nama_kota']; ?>"><?= $keyKota['nama_kota']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -130,10 +130,16 @@
                                                     <tr>
                                                         <td>Deskripsi</td>
                                                         <td>:</td>
-                                                        <td><?= $key['deskripsi']; ?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary btn-sm mr-1 ml-1" data-toggle="collapse" data-target="#collapse<?= $key['id_keranjang']; ?>" aria-expanded="false" aria-controls="collapse<?= $key['id_keranjang']; ?>"><i class="fas fa-eye"></i></button>
+                                                            <div class="collapse" id="collapse<?= $key['id_keranjang']; ?>">
+                                                                <?= $key['deskripsi']; ?>
+                                                            </div>
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
+
                                         </div>
                                         <div class="col-md-6">
                                             <table class="table-sm table mb-2 text-dark" width="100%">

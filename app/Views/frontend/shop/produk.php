@@ -49,10 +49,10 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="kota">Kota</label>
-                                            <select name="filter_kota" id="" class="form-control" required>
+                                            <select name="filter_kota" id="" class="form-control select2" required>
                                                 <option value="">Pilih Kota</option>
                                                 <?php foreach ($kota as $keyKota) { ?>
-                                                    <option value="<?= $keyKota['kota_toko']; ?>"><?= $keyKota['kota_toko']; ?></option>
+                                                    <option value="<?= $keyKota['nama_kota']; ?>"><?= $keyKota['nama_kota']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -103,6 +103,11 @@
                                 <table class="table-sm table mb-2 text-dark" width="100%">
                                     <tbody>
                                         <tr>
+                                            <td>Toko</td>
+                                            <td>:</td>
+                                            <td><?= $key['nama_toko']; ?></td>
+                                        </tr>
+                                        <tr>
                                             <td>Stok</td>
                                             <td>:</td>
                                             <td><?= $key['stok']; ?></td>
@@ -121,6 +126,11 @@
                                             <td>Status</td>
                                             <td>:</td>
                                             <td><?= $key['status']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kota</td>
+                                            <td>:</td>
+                                            <td><?= $key['kota_toko']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Aksi</td>
