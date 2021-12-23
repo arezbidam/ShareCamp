@@ -63,10 +63,10 @@ $routes->post('/toko/produk/delete', 'frontend/Produk::delete', ['filter' => 'au
 // route - fitur shop (penyewaan)
 $routes->match(['get', 'post'], '/shop/produk', 'frontend/Shop::index');
 $routes->post('/shop/keranjang/add', 'frontend/Keranjang::add');
-$routes->post('/keranjang/checkout', 'frontend/Keranjang::checkout');
 
 // route - fitur keranjang
 $routes->get('/keranjang', 'frontend/Keranjang::index', ['filter' => 'auth']);
+$routes->post('/keranjang/checkout', 'frontend/Keranjang::checkout');
 
 // route - fitur pesanan
 $routes->get('/pesanan', 'frontend/Pesanan::index', ['filter' => 'auth']);

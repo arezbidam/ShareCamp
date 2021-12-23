@@ -135,7 +135,7 @@ class Keranjang extends BaseController
             $selesih_hari = $selisih / 60 / 60 / 24;
             $total_biaya_sewa = $keranjang['harga'] * $selesih_hari * $keranjang['jumlah_sewa'];
             $data_pesanan_detail[] = array(
-                'no_pemesanan' => $no_pemesanan,
+                'no_pesanan' => $no_pemesanan,
                 'id_produk' => $keranjang['id_produk'],
                 'jumlah_sewa' => $keranjang['jumlah_sewa'],
                 'tgl_mulai_sewa' => $keranjang['tgl_mulai_sewa'],
@@ -148,25 +148,25 @@ class Keranjang extends BaseController
             $id_user = $keranjang['id_user'];
             $total_biaya_pemesanan = $total_biaya_pemesanan + $total_biaya_sewa;
         }
-        $data_pesanan = array(
-            'no_pemesanan' => $no_pemesanan,
-            'tgl_pemesanan' => $today,
+        $data_pesanan = [
+            'no_pesanan' => $no_pemesanan,
+            'tgl_pesanan' => $today,
             'id_toko' => $id_toko,
             'id_user' => $id_user,
-            'total_biaya_pemesanan' => $total_biaya_pemesanan,
+            'total_biaya_pesanan' => $total_biaya_pemesanan,
             'sudah_bayar' => 0,
             'sisa_bayar' => 0,
-        );
+        ];
         $allValuesAreTheSame = (count(array_unique($array_id_toko)) === 1);
         if ($allValuesAreTheSame) {
             $this->PesananModel->transStart();
             $this->PesananModel->insert($data_pesanan);
             $this->PesananDetailModel->insertBatch($data_pesanan_detail);
-            $this->KeranjangModel->whereIn('id_keranjang', $array_id_toko)->delete();
+            $this->KeranjangModel->whereIn('id_keranjang', $checkbox_id_keranjang)->delete();
             $this->PesananModel->transComplete();
-            if ($this->PesananModel->transComplete()) {
+            if ($this->PesananModel->transStatus()) {
                 $this->sweetAlertSuccess("Berhasil, Checkout");
-                return redirect()->to('/pesanan/sukses');
+                return redirect()->to('/pesanan');
             } else {
                 $this->sweetAlertError("Gagal, Checkout");
                 return redirect()->to('/keranjang');
@@ -179,7 +179,7 @@ class Keranjang extends BaseController
     function no_pemesanan()
     {
         $today = date("Y-m-d");
-        $query = $this->UserModel->query("SELECT max(no_pemesanan) as maxNoUrut FROM tb_pesanan WHERE Date_Format(created_at,'%Y-%m-%d') = '$today'");
+        $query = $this->PesananModel->query("SELECT max(no_pesanan) as maxNoUrut FROM tb_pesanan WHERE Date_Format(created_at,'%Y-%m-%d') = '$today'");
         $data = $query->getRow();
         $noUrut = (int) substr($data->maxNoUrut, 7, 3);
         $noUrut++;
