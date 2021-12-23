@@ -12,6 +12,11 @@ class PesananModel extends Model
     protected $allowedFields = ['no_pesanan', 'tgl_pesanan', 'id_toko', 'id_user', 'total_biaya_pesanan', 'sudah_bayar', 'sisa_bayar'];
 
 
+    public function search($keyword)
+    {
+        return $this->table('tb_pesanan')->like('no_pesanan', $keyword);
+    }
+
     public function get_pesanan_print_by_no_pesanan($no_pesanan)
     {
         $pesanan =  $this

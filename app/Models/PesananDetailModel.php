@@ -25,6 +25,16 @@ class PesananDetailModel extends Model
             ->get()->getResultArray();
         return  $keranjang;
     }
+    public function get_pesanan_toko_detail_by_id_toko($id_toko)
+    {
+        $query = $this->db->table('tb_pesanan_detail')
+            ->join('tb_pesanan', 'tb_pesanan_detail.no_pesanan=tb_pesanan.no_pesanan')
+            ->join('tb_toko', 'tb_toko.id_toko=tb_pesanan.id_toko')
+            ->join('tb_produk', 'tb_pesanan_detail.id_produk=tb_produk.id_produk')
+            ->where(['tb_toko.id_toko' => $id_toko])
+            ->get()->getResultArray();
+        return  $query;
+    }
     public function get_pesanan_detail_print_by_no_pesanan($no_pesanan)
     {
         $pesanan_detail =  $this

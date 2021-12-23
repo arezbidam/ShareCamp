@@ -58,6 +58,13 @@ $routes->post('/toko/produk/detail', 'frontend/Produk::detail', ['filter' => 'au
 $routes->get('/toko/produk/edit/(:num)', 'frontend/Produk::edit', ['filter' => 'auth']);
 $routes->post('/toko/produk/update', 'frontend/Produk::update', ['filter' => 'auth']);
 $routes->post('/toko/produk/delete', 'frontend/Produk::delete', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/toko/pesanan', 'frontend/PesananToko::index', ['filter' => 'auth']);
+$routes->get('/toko/pesanan/create', 'frontend/Produk::create', ['filter' => 'auth']);
+$routes->post('/toko/pesanan/save', 'frontend/Produk::save', ['filter' => 'auth']);
+$routes->post('/toko/pesanan/detail', 'frontend/Produk::detail', ['filter' => 'auth']);
+$routes->get('/toko/pesanan/edit/(:num)', 'frontend/Produk::edit', ['filter' => 'auth']);
+$routes->post('/toko/pesanan/update', 'frontend/Produk::update', ['filter' => 'auth']);
+$routes->post('/toko/pesanan/delete', 'frontend/Produk::delete', ['filter' => 'auth']);
 
 
 // route - fitur shop (penyewaan)
@@ -69,7 +76,7 @@ $routes->get('/keranjang', 'frontend/Keranjang::index', ['filter' => 'auth']);
 $routes->post('/keranjang/checkout', 'frontend/Keranjang::checkout');
 
 // route - fitur pesanan
-$routes->get('/pesanan', 'frontend/Pesanan::index', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/pesanan', 'frontend/Pesanan::index', ['filter' => 'auth']);
 $routes->get('/pesanan/sukses', 'frontend/Pesanan::detail', ['filter' => 'auth']);
 $routes->get('/pesanan/print/(:any)', 'frontend/Pesanan::print');
 
