@@ -8,6 +8,11 @@
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Dropify -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -44,7 +49,7 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="../../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            <div class="d-sm-none d-lg-inline-block">Hi, <?= session()->get('nama'); ?></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-title">Logged in 5 min ago</div>
@@ -52,7 +57,7 @@
                                 <i class="far fa-user"></i> Profile
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item has-icon text-danger">
+                            <a href="#" class="dropdown-item has-icon text-danger" data-toggle="modal" data-target="#modalSignOut">
                                 <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
                         </div>
@@ -79,7 +84,7 @@
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-database"></i> <span>Data Master</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="<?= base_url('admin/category'); ?>">Category Barang</a></li>
+                                <li><a class="nav-link" href="<?= base_url('admin/kategori'); ?>">Kategori Barang</a></li>
                                 <li><a class="nav-link" href="<?= base_url('admin/toko'); ?>">Toko</a></li>
                             </ul>
                         </li>
@@ -90,7 +95,26 @@
             <?= $this->renderSection("content"); ?>
 
 
-
+            <!-- Modal SignOut -->
+            <div class="modal fade" id="modalSignOut" tabindex="-1" role="dialog" aria-labelledby="modalSignOutLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalSignOutLabel">Sign-Out</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah anda yakin ingin sign-out ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="<?= base_url('admin/sign-out'); ?>" class="btn btn-primary">Sign-Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <footer class="main-footer">
                 <div class="footer-left">
                     <i class="fas fa-campground"></i> Share<span style="color:#48af48">Camp</span> &copy; 2021
@@ -127,5 +151,31 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
+            $('.dropify').dropify({
+                tpl: {
+                    wrap: '<div class="dropify-wrapper"></div>',
+                    loader: '<div class="dropify-loader"></div>',
+                    message: '<div class="dropify-message"><span class="file-icon" /> <p style="font-size:14pt;">{{ default }}</p></div>',
+                    preview: '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">{{ replace }}</p></div></div></div>',
+                    filename: '<p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>',
+                    clearButton: '<button type="button" class="dropify-clear">{{ remove }}</button>',
+                    errorLine: '<p class="dropify-error">{{ error }}</p>',
+                    errorsContainer: '<div class="dropify-errors-container"><ul></ul></div>'
+                }
+            });
+            $('.simple-select2').select2({
+                placeholder: "-- Select an option --",
+                allowClear: true,
+            });
+            $('#summernote').summernote({
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                ]
+            });
         });
     </script>

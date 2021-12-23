@@ -15,8 +15,18 @@ class TokoModel extends Model
     {
         return $this->where(['id_user' => $id_user])->first();
     }
+    public function get_all_toko()
+    {
+        return $this->findAll();
+    }
     public function get_toko_by_id_toko($id_toko)
     {
         return $this->where(['id_toko' => $id_toko])->first();
+    }
+    public function get_pemilik_toko($id_toko)
+    {
+        return $this
+            ->join('tb_user', 'tb_user.id_user=tb_toko.id_user')
+            ->where(['id_toko' => $id_toko])->get()->getRow();
     }
 }

@@ -49,4 +49,29 @@ class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    public function sweetAlertSuccess($msg)
+    {
+        session()->setFlashdata('pesan', '
+        <script>
+            Swal.fire(
+            "Success!",
+            "' . $msg . '",
+            "success"
+            ).then(function() {
+            });
+        </script>');
+    }
+    public function sweetAlertError($msg)
+    {
+        session()->setFlashdata('pesan', '
+        <script>
+            Swal.fire(
+            "Oopss!",
+            "' . $msg . '",
+            "error"
+            ).then(function() {
+            });
+        </script>');
+    }
 }

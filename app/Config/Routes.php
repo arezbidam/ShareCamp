@@ -31,57 +31,61 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/login', 'Login::index', ['filter' => 'UserLogged']);
-$routes->get('/logout', 'Login::logOut');
-$routes->get('/signIn', 'Login::signIn');
-$routes->get('/signUp', 'Login::signUp', ['filter' => 'UserLogged']);
-$routes->get('/register', 'Register::index');
-
-$routes->get('/keranjang', 'Keranjang::index');
-
-$routes->get('/products', 'products::index');
-$routes->get('/products/detail/(:num)', 'products::detail/$1');
-$routes->get('/products/sharing/(:num)', 'products::detail_sharing/$1');
-$routes->post('/products/keranjang/add', 'products::add_keranjang');
-$routes->post('/products/keranjang/add', 'products::add_keranjang');
-$routes->post('/products/checkout', 'products::checkout');
-
-$routes->get('/profil', 'Profile::index', ['filter' => 'UserReq']);
-$routes->get('/profile', 'Profile::index', ['filter' => 'UserReq']);
-$routes->get('/profile/update/(:num)', 'Profile::update/$1', ['filter' => 'UserReq']);
-
-$routes->get('/pemesanan_saya', 'Pemesanan::index', ['filter' => 'UserReq']);
-$routes->get('/pemesanan/detail/(:num)', 'Pemesanan::detail/$1', ['filter' => 'UserReq']);
-$routes->get('/pemesanan/detail_share/(:num)', 'Pemesanan::detail/$1', ['filter' => 'UserReq']);
-$routes->get('/pemesanan/share_add', 'Pemesanan::share_add', ['filter' => 'UserReq']);
-$routes->get('/pemesanan/share_add_2', 'Pemesanan::share_add_2', ['filter' => 'UserReq']);
+$routes->get('/', 'Frontend::index');
+$routes->get('/login', 'frontend/Auth::index', ['filter' => 'UserLogged']);
+$routes->post('/sign-in', 'frontend/Auth::signIn');
+$routes->get('/sign-up', 'frontend/Auth::signUp', ['filter' => 'UserLogged']);
+$routes->post('/register', 'frontend/Auth::register');
+$routes->get('/logout', 'frontend/Auth::signOut');
 
 
-
-$routes->get('/toko', 'Toko::index', ['filter' => 'auth']);
-$routes->get('/toko/create', 'Toko::create', ['filter' => 'auth']);
-$routes->post('/toko/edit', 'Toko::edit', ['filter' => 'auth']);
-$routes->post('/toko/save', 'Toko::save', ['filter' => 'auth']);
-$routes->post('/toko/delete', 'Toko::delete', ['filter' => 'auth']);
-$routes->post('/toko/update', 'Toko::update', ['filter' => 'auth']);
-$routes->get('/toko/barang/create', 'Toko::create_barang', ['filter' => 'auth']);
-$routes->post('/toko/barang/save', 'Toko::save_barang', ['filter' => 'auth']);
-$routes->post('/toko/barang/detail', 'Toko::detail_barang', ['filter' => 'auth']);
-$routes->post('/toko/barang/edit', 'Toko::edit_barang', ['filter' => 'auth']);
-$routes->post('/toko/barang/update', 'Toko::update_barang', ['filter' => 'auth']);
-$routes->post('/toko/barang/hapus', 'Toko::delete_barang', ['filter' => 'auth']);
+$routes->get('/profile', 'frontend/Profile::index', ['filter' => 'auth']);
+$routes->post('/profile/update-data-pribadi', 'frontend/Profile::updateDataPribadi', ['filter' => 'auth']);
+$routes->post('/profile/update-data-rekening', 'frontend/Profile::updateDataRekening', ['filter' => 'auth']);
 
 
+// route - toko saya
+$routes->get('/toko', 'frontend/Toko::index', ['filter' => 'auth']);
+$routes->post('/toko/create', 'frontend/Toko::create', ['filter' => 'auth']);
+$routes->post('/toko/edit', 'frontend/Toko::edit', ['filter' => 'auth']);
+$routes->post('/toko/save', 'frontend/Toko::save', ['filter' => 'auth']);
+$routes->post('/toko/delete', 'frontend/Toko::delete', ['filter' => 'auth']);
+$routes->post('/toko/update', 'frontend/Toko::update', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/toko/produk', 'frontend/Produk::index', ['filter' => 'auth']);
+$routes->get('/toko/produk/create', 'frontend/Produk::create', ['filter' => 'auth']);
+$routes->post('/toko/produk/save', 'frontend/Produk::save', ['filter' => 'auth']);
+$routes->post('/toko/produk/detail', 'frontend/Produk::detail', ['filter' => 'auth']);
+$routes->get('/toko/produk/edit/(:num)', 'frontend/Produk::edit', ['filter' => 'auth']);
+$routes->post('/toko/produk/update', 'frontend/Produk::update', ['filter' => 'auth']);
+$routes->post('/toko/produk/delete', 'frontend/Produk::delete', ['filter' => 'auth']);
 
 
-// admin
+// route - fitur shop (penyewaan)
+$routes->match(['get', 'post'], '/shop/produk', 'frontend/Shop::index');
+$routes->post('/shop/keranjang/add', 'frontend/Keranjang::add');
+$routes->post('/keranjang/checkout', 'frontend/Keranjang::checkout');
+
+// route - fitur keranjang
+$routes->get('/keranjang', 'frontend/Keranjang::index', ['filter' => 'auth']);
+
+// route - fitur pesanan
+$routes->get('/pesanan', 'frontend/Pesanan::index', ['filter' => 'auth']);
+$routes->get('/pesanan/sukses', 'frontend/Pesanan::detail', ['filter' => 'auth']);
+$routes->get('/pesanan/print/(:any)', 'frontend/Pesanan::print');
+
+
+// admin - auth
+$routes->get('/admin', 'admin/Auth::index');
+$routes->post('/admin/sign-in', 'admin/Auth::signIn');
+$routes->get('/admin/sign-out', 'admin/Auth::signOut');
+
+
 $routes->get('/admin/dashboard', 'admin/Dashboard::index');
-$routes->get('/admin/category', 'admin/Category::index');
-$routes->get('/admin/category/add', 'admin/Category::add');
-$routes->post('/admin/category/edit', 'admin/Category::edit');
-$routes->post('/admin/category/save', 'admin/Category::save');
-$routes->post('/admin/category/update', 'admin/Category::update');
+$routes->get('/admin/kategori', 'admin/Kategori::index');
+$routes->get('/admin/kategori/add', 'admin/Kategori::add');
+$routes->post('/admin/kategori/edit', 'admin/Kategori::edit');
+$routes->post('/admin/kategori/save', 'admin/Kategori::save');
+$routes->post('/admin/kategori/update', 'admin/Kategori::update');
 $routes->get('/admin/toko', 'admin/Toko::index');
 $routes->get('/admin/toko/add', 'admin/Toko::add');
 $routes->post('/admin/toko/acc', 'admin/Toko::acc');

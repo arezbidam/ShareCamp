@@ -111,45 +111,44 @@ class Toko extends BaseController
     }
     public function acc()
     {
-            $saveToko = $this->TokoModel->save([
-                'id_toko' => $this->request->getVar('id_toko'),
-                'status_toko' => "APPROVED",
-            ]);
-            if ($saveToko) {
-                session()->setFlashdata('pesan', '
+        $saveToko = $this->TokoModel->save([
+            'id_toko' => $this->request->getVar('id_toko'),
+            'status_toko' => "APPROVED",
+        ]);
+        if ($saveToko) {
+            session()->setFlashdata('pesan', '
                 <div class="alert alert-success">
                 Update Berhasil
                 </div>
                 ');
-            } else {
-                session()->setFlashdata('pesan', '
+        } else {
+            session()->setFlashdata('pesan', '
                 <div class="alert alert-danger">
                 Update Gagal
                 </div>
                 ');
-            }
-            return redirect()->to('/admin/toko');
+        }
+        return redirect()->to('/admin/toko');
     }
     public function tolak()
     {
-            $saveToko = $this->TokoModel->save([
-                'id_toko' => $this->request->getVar('id_toko'),
-                'status_toko' => "DITOLAK",
-            ]);
-            if ($saveToko) {
-                session()->setFlashdata('pesan', '
+        $saveToko = $this->TokoModel->save([
+            'id_toko' => $this->request->getVar('id_toko'),
+            'status_toko' => "DITOLAK",
+        ]);
+        if ($saveToko) {
+            session()->setFlashdata('pesan', '
                 <div class="alert alert-success">
                 Update Berhasil
                 </div>
                 ');
-            } else {
-                session()->setFlashdata('pesan', '
+        } else {
+            session()->setFlashdata('pesan', '
                 <div class="alert alert-danger">
                 Update Gagal
                 </div>
                 ');
-            }
-            return redirect()->to('/admin/toko');
+        }
+        return redirect()->to('/admin/toko');
     }
-    
 }
