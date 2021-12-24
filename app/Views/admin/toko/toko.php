@@ -8,7 +8,6 @@
             <div class="section-header">
                 <h1>Halaman Toko</h1>
                 <div class="section-header-breadcrumb">
-                    <a href="<?= base_url('admin/category/add'); ?>" class="btn btn-primary btn-icon float-right"><i class="fas fa-plus"></i> Tambah Data</a>
                 </div>
             </div>
             <div class="section-body">
@@ -43,13 +42,12 @@
                                                             <form method="post">
                                                                 <input type="hidden" name="id_toko" value="<?= $key['id_toko']; ?>">
                                                                 <?php if ($key['status_toko'] == "APPROVED") { ?>
-                                                                    <button type="submit" formaction="<?= base_url('admin/toko/tolak'); ?>" name="tolak_button" class="btn btn-icon btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Setujui"><i class="fas fa-window-close"></i></button>
+                                                                    <button type="submit" formaction="<?= base_url('admin/toko/tolak'); ?>" name="tolak_button" class="btn btn-icon btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="fas fa-window-close"></i></button>
                                                                 <?php  } else { ?>
                                                                     <button type="submit" formaction="<?= base_url('admin/toko/acc'); ?>" name="acc_button" class="btn btn-icon btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Setujui"><i class="fas fa-check"></i></button>
                                                                 <?php } ?>
-                                                                <button type="submit" formaction="#" name="detail_button" class="btn btn-icon btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Detail"><i class="fas fa-eye"></i></button>
-                                                                <button type="submit" formaction="<?= base_url('admin/toko/edit'); ?>" name="edit_button" class="btn btn-icon btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-edit"></i></button>
-                                                                <button type="button" class="btn btn-icon btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fas fa-trash"></i></button>
+                                                                <a href="<?= base_url('admin/toko/' . $key['id_toko']); ?>" class="btn btn-icon btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Lihat Detail"><i class="fas fa-eye"></i></a>
+                                                                <button type="button" onclick="hapusToko('<?= $key['id_toko']; ?>')" class="btn btn-icon btn-danger btn-sm" data-toggle="modal" data-target="#modalHapusToko"><i class="fas fa-trash"></i></button>
                                                             </form>
                                                         </td>
                                                     </tr>
@@ -74,19 +72,22 @@
             </div>
         </section>
         <!-- Delete Confirmation-->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modalHapusToko" tabindex="-1" role="dialog" aria-labelledby="modalHapusTokoLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Apakah anda yakin?</h5>
+                        <h5 class="modal-title" id="modalHapusTokoLabel">Apakah anda yakin?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">Data yang dihapus tidak dapat dipulihkan!</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Batal</button>
-                        <a id="btn-delete" class="btn btn-danger" href="#"><i class="fas fa-trash"></i> Hapus</a>
+                        <form method="post" action="<?= base_url('admin/delete/toko'); ?>">
+                            <input type="hidden" name="id_toko" id="hapus-id-toko-admin" class="form-control">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal"><i class="fas fa-undo-alt"></i> Batal</button>
+                            <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i> Hapus</button>
+                        </form>
                     </div>
                 </div>
             </div>

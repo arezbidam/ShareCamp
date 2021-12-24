@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\BarangModel;
+use App\Models\ProdukModel;
 use App\Models\UserModel;
 use App\Models\TokoModel;
 
@@ -13,6 +13,7 @@ class Toko extends BaseController
     {
         $this->UserModel = new UserModel();;
         $this->TokoModel = new TokoModel();
+        $this->ProdukModel = new ProdukModel();
     }
 
     public function index()
@@ -23,91 +24,33 @@ class Toko extends BaseController
         ];
         return view('admin/toko/toko', $data);
     }
-    public function add()
+    public function delete()
     {
-        $data = [
-            'title' => 'Toko',
-            'toko' => $this->TokoModel->findAll(),
+        $id_toko = [
+            'id_toko' => $this->request->getVar('id_toko'),
         ];
-        return view('admin/toko/add', $data);
-    }
-    public function save()
-    {
-        if (!$this->validate([
-            'nama_toko' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Caategories',
-                ]
-            ],
-            'keterangan_toko' => [
-                'rules' => 'trim|required',
-                'errors' => [
-                    'required' => 'Keterangan tidak boleh kosong',
-                ]
-            ],
-        ])) {
-            return redirect()->to('/admin/toko/add')->withInput();
+        $this->TokoModel->transStart();
+        $this->TokoModel->where($id_toko)->delete();
+        $this->ProdukModel->where($id_toko)->delete();
+        $this->TokoModel->transComplete();
+        if ($this->TokoModel->transStatus()) {
+            $this->sweetAlertSuccess("Berhasil Hapus Toko");
+            return redirect()->to('admin/toko');
         } else {
-            $saveToko = $this->TokoModel->insert([
-                'nama_toko' => $this->request->getVar('nama_toko'),
-                'keterangan_toko' => $this->request->getVar('keterangan_toko'),
-            ]);
-            if ($saveToko) {
-                session()->setFlashdata('pesan', 'Registrasi Toko Berhasil');
-            } else {
-                session()->setFlashdata('pesan', 'Data Gagal Di Tambahkan');
-            }
-            return redirect()->to('/admin/toko');
+            $this->sweetAlertError("Gagal Hapus Toko");
+            return redirect()->to('admin/toko');
         }
     }
-    public function edit()
+    public function detail()
     {
-        $id_toko = $this->request->getVar('id_toko');
+        $uri = current_url(true);
+        $id_toko = $uri->getSegment('3');
+        $detail_toko = $this->TokoModel->join('tb_user', 'tb_user.id_user=tb_toko.id_user')->where(['tb_toko.id_toko' => $id_toko])->first();
         $data = [
             'title' => 'Toko',
-            'Toko' => $this->TokoModel->gettokoById($id_toko),
+            'detail_toko' => $detail_toko,
         ];
-        return view('admin/toko/edit', $data);
-    }
-    public function update()
-    {
-        if (!$this->validate([
-            'nama_toko' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nama Caategories',
-                ]
-            ],
-            'keterangan_toko' => [
-                'rules' => 'trim|required',
-                'errors' => [
-                    'required' => 'Keterangan tidak boleh kosong',
-                ]
-            ],
-        ])) {
-            return redirect()->to('/admin/toko/edit')->withInput();
-        } else {
-            $saveToko = $this->TokoModel->save([
-                'id_toko' => $this->request->getVar('id_toko'),
-                'nama_toko' => $this->request->getVar('nama_toko'),
-                'keterangan_toko' => $this->request->getVar('keterangan_toko'),
-            ]);
-            if ($saveToko) {
-                session()->setFlashdata('pesan', '
-                <div class="alert alert-success">
-                Update Berhasil
-                </div>
-                ');
-            } else {
-                session()->setFlashdata('pesan', '
-                <div class="alert alert-danger">
-                Update Gagal
-                </div>
-                ');
-            }
-            return redirect()->to('/admin/toko');
-        }
+        return view('admin/toko/detail', $data);
     }
     public function acc()
     {

@@ -91,6 +91,10 @@ $routes->post('/cari-teman/keluar-sharecamp', 'frontend/Teman::keluar', ['filter
 $routes->get('/admin', 'admin/Auth::index');
 $routes->post('/admin/sign-in', 'admin/Auth::signIn');
 $routes->get('/admin/sign-out', 'admin/Auth::signOut');
+$routes->get('/admin/profile', 'admin/Profile::index', ['filter' => 'auth']);
+$routes->post('/admin/profile/update-data-pribadi', 'admin/Profile::updateDataPribadi', ['filter' => 'auth']);
+$routes->post('/admin/profile/update-data-rekening', 'admin/Profile::updateDataRekening', ['filter' => 'auth']);
+$routes->post('/admin/profile/ubah-password', 'admin/Profile::update_password', ['filter' => 'auth']);
 
 
 $routes->get('/admin/dashboard', 'admin/Dashboard::index');
@@ -100,10 +104,10 @@ $routes->post('/admin/kategori/edit', 'admin/Kategori::edit');
 $routes->post('/admin/kategori/save', 'admin/Kategori::save');
 $routes->post('/admin/kategori/update', 'admin/Kategori::update');
 $routes->get('/admin/toko', 'admin/Toko::index');
-$routes->get('/admin/toko/add', 'admin/Toko::add');
+$routes->get('/admin/toko/(:any)', 'admin/Toko::detail');
+$routes->post('/admin/delete/toko', 'admin/Toko::delete');
 $routes->post('/admin/toko/acc', 'admin/Toko::acc');
 $routes->post('/admin/toko/tolak', 'admin/Toko::tolak');
-$routes->post('/admin/toko/edit', 'admin/Toko::edit');
 $routes->post('/admin/toko/save', 'admin/Toko::save');
 $routes->post('/admin/toko/update', 'admin/Toko::update');
 

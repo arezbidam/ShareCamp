@@ -46,9 +46,6 @@
                             </div>
 
                             <div class="form-group text-right">
-                                <a href="#" class="float-left mt-3 text-success">
-                                    Forgot Password?
-                                </a>
                                 <button type="submit" class="btn btn-success btn-lg btn-icon icon-right" tabindex="4">
                                     Login
                                 </button>
