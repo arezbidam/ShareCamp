@@ -42,6 +42,7 @@ $routes->get('/logout', 'frontend/Auth::signOut');
 $routes->get('/profile', 'frontend/Profile::index', ['filter' => 'auth']);
 $routes->post('/profile/update-data-pribadi', 'frontend/Profile::updateDataPribadi', ['filter' => 'auth']);
 $routes->post('/profile/update-data-rekening', 'frontend/Profile::updateDataRekening', ['filter' => 'auth']);
+$routes->post('/profile/ubah-password', 'frontend/Profile::update_password', ['filter' => 'auth']);
 
 
 // route - toko saya
@@ -75,6 +76,15 @@ $routes->post('/keranjang/checkout', 'frontend/Keranjang::checkout');
 $routes->match(['get', 'post'], '/pesanan', 'frontend/Pesanan::index', ['filter' => 'auth']);
 $routes->get('/pesanan/sukses', 'frontend/Pesanan::detail', ['filter' => 'auth']);
 $routes->get('/pesanan/print/(:any)', 'frontend/Pesanan::print');
+
+// route - cari teman camping
+$routes->match(['get', 'post'], '/cari-teman', 'frontend/Teman::index');
+$routes->get('/cari-teman/add', 'frontend/Teman::add', ['filter' => 'auth']);
+$routes->post('/cari-teman/save', 'frontend/Teman::save', ['filter' => 'auth']);
+$routes->post('/cari-teman/join-sharecamp', 'frontend/Teman::join', ['filter' => 'auth']);
+$routes->post('/cari-teman/hapus-sharecamp', 'frontend/Teman::hapus', ['filter' => 'auth']);
+$routes->post('/cari-teman/keluar-sharecamp', 'frontend/Teman::keluar', ['filter' => 'auth']);
+
 
 
 // admin - auth

@@ -75,4 +75,28 @@ class Profile extends BaseController
 
         return redirect()->to('profile');
     }
+    public function update_password()
+    {
+        $password_baru = $this->request->getVar('password_baru');
+        $ulangi_password_baru = $this->request->getVar('ulangi_password_baru');
+        if ($password_baru != $ulangi_password_baru) {
+            $this->sweetAlertError("Password anda tidak sama, silahkan ulangi");
+            return redirect()->to('profile');
+        } else {
+            $where = [
+                'id_user' => session()->get('id')
+            ];
+            $data = [
+                'password' => $password_baru
+            ];
+            $update = $this->LoginModel->update_password($data);
+            if ($update) {
+                $this->sweetAlertSuccess("Berhasil Ganti Password");
+                return redirect()->to('profile');
+            } else {
+                $this->sweetAlertError("Gagal Ganti Password");
+                return redirect()->to('profile');
+            }
+        }
+    }
 }

@@ -178,7 +178,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="id_produk" id="tambah-keranjang-id-produk">
                         <table class="table-sm" width="100%">
                             <tbody>
                                 <tr>

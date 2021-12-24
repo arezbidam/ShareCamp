@@ -59,6 +59,7 @@ class Login extends BaseController
         }
     }
 
+
     public function logOut()
     {
         # code...

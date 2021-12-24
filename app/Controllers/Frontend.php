@@ -21,7 +21,7 @@ class Frontend extends BaseController
             'title' => 'Beranda',
             'isi' => $this->UserModel->findAll(),
             'produk' => $this->ProdukModel->findAll(),
-            'produk_terbaru' => $this->ProdukModel->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.kategori_produk')->orderBy('tb_produk.created_at', 'DESC')->limit(3)->findAll(),
+            'produk_terbaru' => $this->ProdukModel->join('tb_kategori', 'tb_kategori.id_kategori=tb_produk.kategori_produk')->join('tb_toko', 'tb_toko.id_toko=tb_produk.id_toko')->orderBy('tb_produk.created_at', 'DESC')->limit(3)->findAll(),
             'pages' => "home"
         ];
         return view('frontend/index', $data);

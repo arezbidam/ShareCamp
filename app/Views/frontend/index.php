@@ -44,7 +44,7 @@
                                     <?php if (session()->get('id')) { ?>
                                         <button type="button" onclick="tambahKeKeranjang('<?= $produk['id_produk']; ?>')" data-toggle="modal" data-target="#modalTambahKeKeranjang" class="btn btn-primary"><i class="fas fa-shopping-cart"></i></button>
                                     <?php } else { ?>
-                                        <button type="button" data-toggle="modal" data-target="#modalAndaHarusLogin" class="card-cta btn btn-primary btn-sm"><i class="fas fa-plus"></i> Keranjang</button>
+                                        <button type="button" data-toggle="modal" data-target="#modalAndaHarusLogin" class="card-cta btn btn-primary"><i class="fas fa-shopping-cart"></i></button>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -63,6 +63,11 @@
                                             <td>Stok</td>
                                             <td>:</td>
                                             <td><?= $produk['stok']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kota</td>
+                                            <td>:</td>
+                                            <td><?= $produk['kota_toko']; ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

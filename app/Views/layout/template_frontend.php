@@ -82,21 +82,28 @@
                         <li class="nav-item <?= $pages == "home" ? "active" : ""; ?>">
                             <a href="<?= base_url(); ?>" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
                         </li>
+                        <li class="nav-item <?= $pages == "sewa-produk" ? "active" : ""; ?>">
+                            <a href="<?= base_url('shop/produk'); ?>" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Sewa Produk</span></a>
+                        </li>
+                        <li class="nav-item <?= $pages == "cari-teman" ? "active" : ""; ?>">
+                            <a href="<?= base_url('cari-teman'); ?>" class="nav-link"><i class="fas fa-users"></i><span>Cari Teman Camping</span></a>
+                        </li>
                         <?php if ($pages == "toko") { ?>
                             <li class="nav-item <?= $pages == "toko" ? "active" : ""; ?>">
                                 <a href="<?= base_url('toko'); ?>" class="nav-link"><i class="fas fa-database"></i><span>Toko Saya</span></a>
                             </li>
-                        <?php } else { ?>
-                            <li class="nav-item <?= $pages == "sewa-produk" ? "active" : ""; ?>">
-                                <a href="<?= base_url('shop/produk'); ?>" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Sewa Produk</span></a>
-                            </li>
-                            <li class="nav-item <?= $pages == "keranjang" ? "active" : ""; ?>">
-                                <a href="<?= base_url('keranjang'); ?>" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Keranjang Saya</span></a>
-                            </li>
-                            <li class="nav-item <?= $pages == "pesanan" ? "active" : ""; ?>">
-                                <a href="<?= base_url('pesanan'); ?>" class="nav-link"><i class="fas fa-copy"></i><span>Pesanan Saya</span></a>
-                            </li>
-                        <?php } ?>
+                            <?php } else {
+
+                            if (session()->get('masuk')) { ?>
+
+                                <li class="nav-item <?= $pages == "keranjang" ? "active" : ""; ?>">
+                                    <a href="<?= base_url('keranjang'); ?>" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Keranjang Saya</span></a>
+                                </li>
+                                <li class="nav-item <?= $pages == "pesanan" ? "active" : ""; ?>">
+                                    <a href="<?= base_url('pesanan'); ?>" class="nav-link"><i class="fas fa-copy"></i><span>Pesanan Saya</span></a>
+                                </li>
+                        <?php }
+                        } ?>
                     </ul>
                 </div>
             </nav>
@@ -174,6 +181,21 @@
         function bayarPesanan(noPesanan) {
             $('#bayar-pesanan-no-pesanan').attr('value', noPesanan);
             $('#modalBayarPesanan').modal();
+        }
+
+        function joinModalShareCamp(noShareCamp) {
+            $('#join-sharecamp-no-sharecamp').attr('value', noShareCamp);
+            $('#modalJoinShareCamp').modal();
+        }
+
+        function hapusModalShareCamp(noShareCamp) {
+            $('#hapus-sharecamp-no-sharecamp').attr('value', noShareCamp);
+            $('#modalHapusShareCamp').modal();
+        }
+
+        function modalKeluarShareCamp(idJoinShareCamp) {
+            $('#keluar-sharecamp-id-join-sharecamp').attr('value', idJoinShareCamp);
+            $('#modalKeluarShareCamp').modal();
         }
 
         function hapusPesanan(noPesanan) {
