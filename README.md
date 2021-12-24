@@ -36,15 +36,15 @@
 15. kurang lebihnya seperti itu untuk panduan penggunaan aplikasi, supaya lebih jelas silahkan dicoba saja.
 
 #### Skema User untuk Testing
--(sebagai user yang sudah memiliki toko dan produk)
--Email : clarence@gmail.com
--password : 12345
+- (sebagai user yang sudah memiliki toko dan produk)
+- Email : clarence@gmail.com
+- password : 12345
 
--(sebagai user yang menyewa produk)
--Email : adji@gmail.com
--password : 123
+- (sebagai user yang menyewa produk)
+- Email : adji@gmail.com
+- password : 123
 
--(sebagai admin yang dapat menyetujui pendaftaran toko)
--Email : admin@gmail.com
--password : admin
+- (sebagai admin yang dapat menyetujui pendaftaran toko)
+- Email : admin@gmail.com
+- password : admin
 
