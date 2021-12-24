@@ -37,14 +37,14 @@
 
 #### Skema User untuk Testing
 - (sebagai user yang sudah memiliki toko dan produk)
-- Email : clarence@gmail.com
-- password : 12345
+  - Email : clarence@gmail.com
+  - password : 12345
 
 - (sebagai user yang menyewa produk)
-- Email : adji@gmail.com
-- password : 123
+  - Email : adji@gmail.com
+  - password : 123
 
 - (sebagai admin yang dapat menyetujui pendaftaran toko)
-- Email : admin@gmail.com
-- password : admin
+  - Email : admin@gmail.com
+  - password : admin
 
