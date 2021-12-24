@@ -91,6 +91,7 @@ $routes->post('/cari-teman/keluar-sharecamp', 'frontend/Teman::keluar', ['filter
 $routes->get('/admin', 'admin/Auth::index');
 $routes->post('/admin/sign-in', 'admin/Auth::signIn');
 $routes->get('/admin/sign-out', 'admin/Auth::signOut');
+$routes->get('/admin/dashboard', 'admin/Dashboard::index', ['filter' => 'auth']);
 $routes->get('/admin/profile', 'admin/Profile::index', ['filter' => 'auth']);
 $routes->post('/admin/profile/update-data-pribadi', 'admin/Profile::updateDataPribadi', ['filter' => 'auth']);
 $routes->post('/admin/profile/update-data-rekening', 'admin/Profile::updateDataRekening', ['filter' => 'auth']);

@@ -19,7 +19,7 @@
                                     <!-- <p class="lead">Cari produk keperluanmu menggunakan fitur filter, kamu juga dapat mencari teman satu destinasi untuk melakukan pemesanan bersama!</p> -->
                                     <div class="mt-4">
                                         <a href="<?= base_url('shop/produk'); ?>" class="btn btn-outline-white btn-lg mr-2 ml-2 mt-2 mb-2">Cari Produk</a>
-                                        <a href="#" class="btn btn-outline-white btn-lg ml-2 mt-2 mb-2">Cari Teman</a>
+                                        <a href="<?= base_url('cari-teman'); ?>" class="btn btn-outline-white btn-lg ml-2 mt-2 mb-2">Cari Teman</a>
                                     </div>
                                 </center>
                             </div>
