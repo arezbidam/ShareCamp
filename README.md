@@ -23,7 +23,7 @@
 2.  lakukan pendaftaran / registrasi pada url http://localhost:8080/sign-up
 3.  setelah berhasil silahkan login pada url http://localhost:8080/login
 4.  setelah berhasil login bisa cari produk yang ingin di sewa pada url http://localhost:8080/shop/produk
-5.  jika sudah menemukan produk yang sesuai user bisa menambahkan ke keranjang dengan menekan button dengan icon keranjang belanja
+5.  jika sudah menemukan produk yang sesuai, user bisa menambahkan ke keranjang dengan menekan button dengan icon keranjang belanja
 6.  user bisa tentukan jumlah produk yang ingin disewa dan memilih tgl mulai dan berakhir penyewaan.
 7.  jika sudah user bisa liat keranjang pada url http://localhost:8080/keranjang
 8.  user hanya dapat meng checkout produk dari toko yang sama
