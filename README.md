@@ -2,9 +2,9 @@
 - Tugas Akhir Capstone Dicoding
 - Team ID: CSD-003
 - Selected theme: Resource sharing & user generated content
-Member :     
-1. F237R7205 – Adji Putra Nugraha
-2. F351R6376 – Aris Setiana
+- Member :     
+  1. F237R7205 – Adji Putra Nugraha
+  2. F351R6376 – Aris Setiana
 
 ## Panduan Instalasi
 1. Download File ShareCamp
