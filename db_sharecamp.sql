@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2021 at 08:45 AM
+-- Generation Time: Dec 24, 2021 at 02:03 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -34,6 +34,13 @@ CREATE TABLE `tb_join_sharecamp` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_join_sharecamp`
+--
+
+INSERT INTO `tb_join_sharecamp` (`id_join_sharecamp`, `no_sharecamp`, `id_user`, `created_at`, `updated_at`) VALUES
+(4, '2', 'U211217001', '2021-12-24 11:32:20', '2021-12-24 11:32:20');
 
 -- --------------------------------------------------------
 
@@ -619,7 +626,8 @@ CREATE TABLE `tb_pesanan` (
 --
 
 INSERT INTO `tb_pesanan` (`no_pesanan`, `tgl_pesanan`, `id_toko`, `id_user`, `total_biaya_pesanan`, `sudah_bayar`, `sisa_bayar`, `created_at`, `updated_at`) VALUES
-('P211223001', '2021-12-23', '10', 'U211220001', '45000.00', '0.00', '0.00', '2021-12-23 10:45:59', '2021-12-23 10:45:59');
+('P211223001', '2021-12-23', '10', 'U211220001', '45000.00', '0.00', '0.00', '2021-12-23 10:45:59', '2021-12-23 10:45:59'),
+('P211224001', '2021-12-24', '11', 'U211220001', '40000.00', '40000.00', '0.00', '2021-12-24 10:15:51', '2021-12-24 11:30:25');
 
 -- --------------------------------------------------------
 
@@ -646,7 +654,8 @@ CREATE TABLE `tb_pesanan_detail` (
 --
 
 INSERT INTO `tb_pesanan_detail` (`id_pesanan_detail`, `no_pesanan`, `id_produk`, `jumlah_sewa`, `tgl_mulai_sewa`, `tgl_berakhir_sewa`, `harga_sewa_per_hari`, `lama_sewa`, `total_biaya_sewa`, `created_at`, `updated_at`) VALUES
-(26, 'P211223001', 10, 1, '2021-12-25', '2021-12-26', '45000.00', 1, '45000.00', '2021-12-23 10:45:59', '2021-12-23 10:45:59');
+(26, 'P211223001', 10, 1, '2021-12-25', '2021-12-26', '45000.00', 1, '45000.00', '2021-12-23 10:45:59', '2021-12-23 10:45:59'),
+(27, 'P211224001', 11, 1, '2021-12-25', '2021-12-26', '40000.00', 1, '40000.00', '2021-12-24 10:15:51', '2021-12-24 10:15:51');
 
 -- --------------------------------------------------------
 
@@ -730,7 +739,7 @@ CREATE TABLE `tb_toko` (
 --
 
 INSERT INTO `tb_toko` (`id_toko`, `nama_toko`, `kota_toko`, `alamat_toko`, `no_telp_toko`, `deskripsi_toko`, `status_toko`, `id_user`, `created_at`, `updated_at`) VALUES
-(11, 'Clarence Store', 'CIREBON', 'Jln. Plered Raya no. 120', '62324409384', 'Menyewakan alat-alat outdorr paling murah sedunia', 'APPROVED', 'U211217001', '2021-12-24 07:12:55', '2021-12-24 07:13:42');
+(11, 'Clarence Store', 'CIREBON', 'Jln. Plered Raya no. 120', '62324409384', 'Menyewakan alat-alat outdorr paling murah sedunia', 'APPROVED', 'U211217001', '2021-12-24 07:12:55', '2021-12-24 11:33:56');
 
 -- --------------------------------------------------------
 
@@ -840,7 +849,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_join_sharecamp`
 --
 ALTER TABLE `tb_join_sharecamp`
-  MODIFY `id_join_sharecamp` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_join_sharecamp` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_kategori`
@@ -852,7 +861,7 @@ ALTER TABLE `tb_kategori`
 -- AUTO_INCREMENT for table `tb_keranjang`
 --
 ALTER TABLE `tb_keranjang`
-  MODIFY `id_keranjang` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_keranjang` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tb_kota`
@@ -870,7 +879,7 @@ ALTER TABLE `tb_login`
 -- AUTO_INCREMENT for table `tb_pesanan_detail`
 --
 ALTER TABLE `tb_pesanan_detail`
-  MODIFY `id_pesanan_detail` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_pesanan_detail` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tb_produk`
